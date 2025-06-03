@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Underdog&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.Underdog{
+  font-family: 'Underdog';
+}
+
+body{
+  font-family: 'Lora', serif;
+}
+
+.navlink{
+  background-color: rgb(54, 134, 215);
+  color: white;
+  padding: 0.5rem 1rem;
+}
