@@ -1,17 +1,21 @@
-import Home from "../HomePage/Home";
-
 import { createBrowserRouter } from "react-router-dom";
+import Mainlayout from "../layouts/Mainlayout";
+import HomePage from "../pages/HomePage";
 
 
-const donationLoad = ({params}) =>fetch('http://localhost:3100/donations');
 
 
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
     {
         path:'/',
-        element:<Home></Home>,
+        element:<Mainlayout/>,
+        children:[
+            {
+                index: true,
+                element:<HomePage/>
+            }
+        ]
     }
 ])
 
-export default router;
