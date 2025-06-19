@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@tailwindcss/vite": "^4.1.10",
+    "firebase": "^11.9.1",
     "localforage": "^1.10.0",
     "match-sorter": "^8.0.1",
     "react": "^19.1.0",
