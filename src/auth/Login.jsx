@@ -5,6 +5,7 @@ import DecorativeSnowflakes from "../components/ui/DecorativeSnowflakes";
 import SnowfallAnimation from "../components/ui/SnowfallAnimation";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import WavyText from "../components/WavyText";
 
 const Login = () => {
   const [isFocused, setIsFocused] = useState({
@@ -37,9 +38,9 @@ const Login = () => {
               transition: { delay: 0.2, type: "spring" }
             }}
           >
-            <h1 className="text-4xl font-bold text-[#7DD3FC] mb-2 underdog">
-              Cozy Kindness
-            </h1>
+            <div className="text-4xl font-bold text-[#7DD3FC] mb-2 underdog flex justify-center">
+              <WavyText text={'Cozy kindness'}/>
+            </div>
             <motion.p 
               initial={{ y: 10, opacity: 0 }}
               animate={{ 

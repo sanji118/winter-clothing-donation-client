@@ -3,6 +3,7 @@ import { FiUser, FiMail, FiLock, FiImage } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from "react-router-dom";
 import SnowfallAnimation from "../components/ui/SnowfallAnimation";
+import WavyText from "../components/WavyText";
 
 const Register = () => {
   return (
@@ -17,7 +18,7 @@ const Register = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-400 mb-2">Create Account</h1>
-          <p className="text-gray-400">Join our <span className="underdog text-cyan-400">Cozy Kindness</span> community today</p>
+          <div className="flex  gap-2  justify-center text-gray-400">Join our <span className="underdog text-cyan-400"><WavyText text={'Cozy Kindness'}/></span> community today</div>
         </div>
 
         {/* Registration Form */}
