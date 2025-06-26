@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const WavyText = ({ text }) => (
-  <div style={{ display: "flex" }}>
+  <div className="underdog flex-wrap text-[#50d9eb]" style={{ display: "flex" }}>
     {text.split("").map((char, i) => (
       <motion.span
         key={i}
