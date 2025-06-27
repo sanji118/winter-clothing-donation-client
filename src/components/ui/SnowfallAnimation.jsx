@@ -3,7 +3,7 @@ import ReactSnowfall from 'react-snowfall'
 
 const SnowfallAnimation = () => {
   return (
-    <div>
+    <div className='z-50'>
         <ReactSnowfall 
         color="#A8DADC" 
         snowflakeCount={60} 
