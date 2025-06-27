@@ -16,9 +16,9 @@ const Navbar = () => {
   return (
     <>
         {/* medium device */}
-        <div className="navbar text-white justify-between">
+        <div className="navbar py-0 fixed top-0 z-50 text-white justify-between">
             <div>
-                <img src="./logo.png" alt="CozyKindness" className="w-28" />
+                <img src="./logo.png" alt="CozyKindness" className="w-28 invert" />
             </div>
             <div className="bg-[#40acbb] h-fit rounded-full">
                 <ul className="flex gap-8 px-8 items-center py-2">
@@ -32,10 +32,10 @@ const Navbar = () => {
                     user? (
                         <div>
                             <Link><img src={user?.photoURL} alt={user?.displayName} className="rounded-full" /></Link>
-                            <button className="btn text-white bg-[#1E293B]/90 rounded-lg" onClick={signOutUser}>Logout</button>
+                            <button className="btn border-none text-white bg-[#1E293B]/90 rounded-lg" onClick={signOutUser}>Logout</button>
                         </div>
                     ):(
-                        <div className="btn text-white bg-[#1E293B]/90 rounded-full">
+                        <div className="btn border-none text-white bg-[#1E293B]/90 rounded-full">
                             <Link to={'/auth'}>Login</Link>
                         </div>
                     )
