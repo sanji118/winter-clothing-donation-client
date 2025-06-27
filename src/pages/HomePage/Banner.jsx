@@ -84,7 +84,7 @@ const Banner = () => {
           <img src={slide.img} alt={slide.title1} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <div className={`text-center text-white px-6 animate__animated ${index === currentSlide ? 'animate__fadeInUp' : ''}`}>
-              <p className="text-yellow-400 text-lg font-semibold italic mb-3">
+              <p className="text-yellow-400 text-lg font-semibold italic mb-3 underdog">
                 —--- {slide.tagline} ---—
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow mb-2">
