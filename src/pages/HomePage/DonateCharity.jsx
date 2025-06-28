@@ -1,4 +1,3 @@
-import { FaHandHoldingHeart, FaUsers, FaHandsHelping,  FaUserFriends } from "react-icons/fa";
 import fundRaising from '../../assets/fundraiser.png';
 import donation from '../../assets/donation.png';
 
@@ -18,8 +17,14 @@ const DonateCharity = () => {
       {/* Features Section */}
       <div>
           {/* Fundraising Card */}
-          <div className="flex gap-7 py-5 items-center">
-            <div><img src={fundRaising} alt="" className="w-20" /></div>
+          <div className="flex gap-7 py-5 items-center group">
+            <div className="relative w-20 h-20">
+              <img 
+                src={fundRaising} 
+                alt="" 
+                className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-x-[-1]" 
+              />
+            </div>
             <div>
                 <h1 className="text-2xl">Fund Raising</h1>
                 <p className="text-gray-600">Experience the real impact of our work through the voices of those we've empowered.</p>
@@ -27,14 +32,22 @@ const DonateCharity = () => {
           </div>
 
           {/* Donation Making Card */}
-          <div className="flex gap-7 py-5 items-center">
-            <div><img src={donation} alt="" className="w-20" /></div>
+          <div className="flex gap-7 py-5 items-center group">
+            <div className="relative w-20 h-20">
+              <img 
+                src={donation} 
+                alt="" 
+                className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-x-[-1]" 
+              />
+            </div>
             <div>
                 <h1 className="text-2xl">Donation Making</h1>
-                <p className=" text-gray-600">Each story reflects the power of your support and the unwavering resilience of our communities.</p>
+                <p className="text-gray-600">Each story reflects the power of your support and the unwavering resilience of our communities.</p>
             </div>
           </div>
-          <button className="btn rounded-full bg-cyan-600 text-white shadow-none px-8 py-6">About More</button>
+          <button className="btn rounded-full bg-cyan-600 hover:bg-cyan-700 text-white shadow-none px-8 py-6 transition-colors duration-300">
+            About More
+          </button>
         </div>
 
         {/* StatsSection */}
@@ -68,5 +81,3 @@ const DonateCharity = () => {
 };
 
 export default DonateCharity;
-
-
