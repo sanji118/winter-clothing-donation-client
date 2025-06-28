@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <>
         {/* medium device */}
-        <div className="navbar py-0 fixed top-0 z-50 text-white justify-between">
+        <div className="navbar py-0 fixed top-0 z-50 text-white justify-between bg-[#3cc2e83a]">
             <div>
                 <img src="./logo.png" alt="CozyKindness" className="w-28 invert" />
             </div>
@@ -35,7 +35,7 @@ const Navbar = () => {
                             <button className="btn border-none text-white bg-[#1E293B]/90 rounded-lg" onClick={signOutUser}>Logout</button>
                         </div>
                     ):(
-                        <div className="btn border-none text-white bg-[#1E293B]/90 rounded-full">
+                        <div className="btn border-none text-white bg-[#1E293B]/90 rounded-full shadow-none">
                             <Link to={'/auth'}>Login</Link>
                         </div>
                     )
