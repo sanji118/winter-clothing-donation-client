@@ -2,7 +2,8 @@ import React from 'react'
 import Banner from './Banner'
 import DonateCharity from './DonateCharity';
 import CharityService from './CharityService';
-import MakeADonation from '../../routes/MakeADonation';
+import MakeADonation from './MakeADonation';
+import Volunteers from './Volunteers';
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <DonateCharity/>
       <CharityService/>
       <MakeADonation/>
+      <Volunteers/>
     </div>
   )
 }
