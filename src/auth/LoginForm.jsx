@@ -5,7 +5,6 @@ import Input from "../components/ui/Input";
 import useAuth from "../utils/useAuth";
 
 const LoginForm = ({ toggleAuth }) =>{
-  const {user} = useAuth();
   return(
     <>
       <div className="text-center mb-6 lg:mb-8">
