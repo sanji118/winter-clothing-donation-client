@@ -4,15 +4,28 @@ import GoogleButton from "../components/ui/GoogleButton";
 import Input from "../components/ui/Input";
 import useAuth from "../utils/useAuth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { GoogleAuthProvider } from "firebase/auth";
 
 const RegisterForm = ({ toggleAuth }) => {
-  const {user, signInWithGoogle, createUser} = useAuth();
+  const { createUser} = useAuth();
   const navigate = useNavigate();
-  const [passwordError, setPasswordError] = useState('');
+  const [passwordError, setPasswordError] = useState(null);
+
+  const isValidPassword = (password) =>{
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasLength = password.length >= 6;
+
+
+    const error = [];
+    if(!hasLength) error.push('. At least 6 characters');
+    if(!hasUpperCase) error.push('. One uppercase letter');
+    if(!hasLowerCase) error.push('. One lowercase letter');
+    
+    return error.length? error : null;
+  }
 
   const handleRegister = e =>{
     e.preventDefault();
@@ -22,6 +35,7 @@ const RegisterForm = ({ toggleAuth }) => {
     const password = form.password.value;
     const photoURL = form.photoURL.value;
     console.log(name, email, password, photoURL);
+    setPasswordError(null);
 
     if(!name || !photoURL){
       Swal.fire({
@@ -31,22 +45,9 @@ const RegisterForm = ({ toggleAuth }) => {
       return;
     }
 
-    const isValidPassword = () =>{
-      const hasUpperCase = /[A-Z]/.test(password);
-      const hasLowerCase = /[a-z]/.test(password);
-      const hasLength = password.length >= 6;
-
-
-      let error = '';
-      if(!hasLength) error += 'Password must be at least 6 characters.'
-      if(!hasUpperCase) error += 'Must contain at least one uppercase letter.';
-      if(!hasLowerCase) error += 'Must contain at least lowercase letter.';
-      setPasswordError(error);
-      return error === '';
-    }
-
-
-    if(!isValidPassword()){
+    const passwordError = isValidPassword(password);
+    if(passwordError){
+      setPasswordError(passwordError);
       return;
     }
 
@@ -64,19 +65,6 @@ const RegisterForm = ({ toggleAuth }) => {
 
   }
 
-  const googleSignIn = () =>{
-    signInWithGoogle()
-    .then(result =>{
-      const user = result.user;
-      console.log(user);
-      toast.success('Successfully registered!')
-      navigate('/');
-    })
-    .catch(error =>{
-      const errorMessage = error.message;
-      console.log(errorMessage);
-    })
-  }
   return(
     <>
       <div className="text-center mb-6 lg:mb-8">
@@ -122,25 +110,21 @@ const RegisterForm = ({ toggleAuth }) => {
             name="password"
             placeholder="••••••••" 
             required 
-            onChange = {()=> setPasswordError('')}
+            onChange = {(e)=>{
+              setPasswordError(isValidPassword(e.target.value));
+            }}
             />
           </div>
           {passwordError && (
-            <div className="mt-1 text-xs text-red-600">
-              {passwordError.split('. ').filter(Boolean).map((error, i)=>(
-                <p key={i}>. {error}</p>
-              ))}
+            <div className="mt-2 bg-red-100 border border-red-300 text-red-700 text-sm rounded p-3">
+              <p className="font-medium mb-1">Please fix these password issues:</p>
+              <ul>
+                {passwordError.map((error, id) =>(
+                  <li key={id}>{error}</li>
+                ))}
+              </ul>
             </div>
           )}
-
-          <div className="mt-1 text-xs text-red-600">
-            Password must contain:
-            <ul>
-              <li>At least 6 characters</li>
-              <li>One uppercase letter</li>
-              <li>One lowercase letter</li>
-            </ul>
-          </div>
         </div>
 
         <motion.button

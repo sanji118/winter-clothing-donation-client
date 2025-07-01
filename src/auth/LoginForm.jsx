@@ -3,8 +3,35 @@ import { FiMail, FiLock } from 'react-icons/fi';
 import GoogleButton from "../components/ui/GoogleButton";
 import Input from "../components/ui/Input";
 import useAuth from "../utils/useAuth";
+import { Result } from "postcss";
+import { useNavigate } from "react-router-dom";
+import { Flip, toast } from "react-toastify";
 
 const LoginForm = ({ toggleAuth }) =>{
+  const {signIn} = useAuth();
+  const navigate = useNavigate();
+
+
+  const handleLogin = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value.trim();
+    const password = form.password.value;
+    console.log(email, password);
+
+    signIn(email, password)
+    .then(result =>{
+      navigate('/');
+      toast.success('Successfully logged in', {
+        position: 'bottom-center',
+        transition: Flip
+      })
+    })
+    .catch(error =>{
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    })
+  }
   return(
     <>
       <div className="text-center mb-6 lg:mb-8">
@@ -12,11 +39,11 @@ const LoginForm = ({ toggleAuth }) =>{
         <p className="text-[#CBD5E1] text-sm lg:text-base">Access your Cozy Kindness account</p>
       </div>
 
-      <form className="space-y-4">
+      <form onSubmit={handleLogin} className="space-y-4">
         <div>
           <label className="block text-[#E2E8F0] mb-2 text-sm font-medium">Email</label>
           <div className="relative">
-            <FiMail className="absolute left-3 top-3 text-[#94A3B8]" />
+            <FiMail className="absolute left-3 top-3 text-[#94A3B8] z-50" />
             <Input type="email" placeholder="your@email.com" required />
           </div>
         </div>
@@ -24,7 +51,7 @@ const LoginForm = ({ toggleAuth }) =>{
         <div>
           <label className="block text-[#E2E8F0] mb-2 text-sm font-medium">Password</label>
           <div className="relative">
-            <FiLock className="absolute left-3 top-3 text-[#94A3B8]" />
+            <FiLock className="absolute left-3 top-3 text-[#94A3B8] z-50" />
             <Input type="password" placeholder="••••••••" required />
           </div>
         </div>

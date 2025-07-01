@@ -1,9 +1,25 @@
-import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import useAuth from '../../utils/useAuth';
 
 const GoogleButton = () => {
+  const {signInWithGoogle} = useAuth();
+
+  const googleSignIn = () =>{
+    signInWithGoogle()
+    .then(result =>{
+      const user = result.user;
+      console.log(user);
+      toast.success('Successfully registered!')
+      navigate('/');
+    })
+    .catch(error =>{
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    })
+  }
   return (
     <button 
+      onClick={googleSignIn}
       type="button"
       className="
         w-full 
