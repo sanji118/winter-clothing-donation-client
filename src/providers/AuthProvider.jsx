@@ -1,7 +1,6 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
-import React, { Children, createContext, useEffect, useState } from 'react'
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import React, { createContext, useEffect, useState } from 'react'
 import auth from '../firebase.init';
-import axios from 'axios';
 import axiosInstance from '../hook/axiosInstance';
 
 
@@ -28,7 +27,7 @@ const AuthProvider = ({children}) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   }
-  const updateProfile = (name, photoURL)=>{
+  const updateUserProfile = (name, photoURL)=>{
     setLoading(true);
     return updateProfile(auth.currentUser, {
         displayName : name,
@@ -50,7 +49,7 @@ const AuthProvider = ({children}) => {
             const {data} = await axiosInstance.post('/jwt', {
               email : currentUser.email
             });
-            console.log('JWT set in cookie: ', data);
+            console.log('JWT set in cookie: ', data.token);
             setLoading(false);
           } catch (error) {
             console.log('jwt error: ', error);
@@ -66,7 +65,7 @@ const AuthProvider = ({children}) => {
   }, [])
 
   const authInfo = {
-    user, loading, createUser, signIn, signInWithGoogle,updateProfile, signOutUser
+    user, loading, createUser, signIn, signInWithGoogle,updateUserProfile, signOutUser
   }
 
   return(

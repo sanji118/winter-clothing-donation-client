@@ -44,7 +44,7 @@ const LoginForm = ({ toggleAuth }) =>{
           <label className="block text-[#E2E8F0] mb-2 text-sm font-medium">Email</label>
           <div className="relative">
             <FiMail className="absolute left-3 top-3 text-[#94A3B8] z-50" />
-            <Input type="email" placeholder="your@email.com" required />
+            <Input type="email" name="email" placeholder="your@email.com" required />
           </div>
         </div>
 
@@ -52,7 +52,7 @@ const LoginForm = ({ toggleAuth }) =>{
           <label className="block text-[#E2E8F0] mb-2 text-sm font-medium">Password</label>
           <div className="relative">
             <FiLock className="absolute left-3 top-3 text-[#94A3B8] z-50" />
-            <Input type="password" placeholder="••••••••" required />
+            <Input type="password" name="password" placeholder="••••••••" required />
           </div>
         </div>
 

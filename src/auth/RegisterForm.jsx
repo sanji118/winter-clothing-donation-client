@@ -9,7 +9,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 const RegisterForm = ({ toggleAuth }) => {
-  const { createUser} = useAuth();
+  const { createUser, updateUserProfile} = useAuth();
   const navigate = useNavigate();
   const [passwordError, setPasswordError] = useState(null);
 
@@ -55,6 +55,7 @@ const RegisterForm = ({ toggleAuth }) => {
     createUser(email, password)
     .then(result =>{
       const user = result.user;
+      updateUserProfile(name, photoURL)
       navigate('/');
       toast.success('Successfully registered!')
     })
