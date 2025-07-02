@@ -1,8 +1,8 @@
 import fundRaising from '../../assets/fundraiser.png';
-import donation from '../../assets/donation.png';
-import image1 from '../../assets/donate-charity-1.png';
-import image2 from '../../assets/donate-charity-2.jpg';
-import image3 from '../../assets/donate-charity-3.jpg';
+import donation from '../../assets/images/donation.png';
+import image1 from '../../assets/images/donate-charity-1.png';
+import image2 from '../../assets/images/donate-charity-2.jpg';
+import image3 from '../../assets/images/donate-charity-3.jpg';
 import { motion } from 'framer-motion';
 
 const DonateCharity = () => {

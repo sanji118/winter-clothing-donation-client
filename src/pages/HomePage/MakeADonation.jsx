@@ -1,4 +1,4 @@
-import heart from '../../assets/heart.gif';
+import heart from '../../assets/images/heart.gif';
 
 const MakeADonation = () => {
 
