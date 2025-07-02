@@ -15,7 +15,7 @@ const Navbar = () => {
     { name: 'Dashboard', path: '/dashboard' }
   ];
 
-  // Handle scroll effect
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -29,7 +29,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menu when clicking outside
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isMenuOpen && !event.target.closest('.mobile-menu')) {
@@ -45,7 +45,7 @@ const Navbar = () => {
     <>
       {/* Desktop Navbar */}
       <motion.div 
-        className={`navbar py-0 fixed top-0 z-50 text-white justify-between px-4 lg:px-8 transition-all duration-300 ${scrolled ? 'bg-[#3cc2e8] shadow-lg' : 'bg-[#3cc2e83a]'}`}
+        className={`navbar py-0 fixed top-0 z-50 text-white justify-between px-4 lg:px-8 transition-all duration-300 ${scrolled ? 'bg-[#3cc3e83f] shadow-lg' : 'bg-[#3cc2e83a]'}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
