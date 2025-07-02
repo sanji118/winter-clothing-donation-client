@@ -1,9 +1,11 @@
-import fundRaising from '../../assets/fundraiser.png';
+import fundRaising from '../../assets/images/fundraiser.png';
 import donation from '../../assets/images/donation.png';
 import image1 from '../../assets/images/donate-charity-1.png';
 import image2 from '../../assets/images/donate-charity-2.jpg';
 import image3 from '../../assets/images/donate-charity-3.jpg';
 import { motion } from 'framer-motion';
+import SectionSubHeading from '../../components/ui/SectionSubHeading';
+import SectionHeading from '../../components/ui/SectionHeading';
 
 const DonateCharity = () => {
   return (
@@ -73,10 +75,8 @@ const DonateCharity = () => {
         {/* Section Details */}
         <div className="pt-10 lg:pt-0">
           <div>
-            <p className="underdog italic text-cyan-600 font-bold text-xl">Welcome to Cozy Kindness</p>
-            <h1 className="text-4xl sm:text-5xl font-bold my-6">
-              Transforming Lives, One Donation At A Time
-            </h1>
+            <SectionSubHeading text={'Welcome to Cozy Kindness'} />
+            <SectionHeading text={'Transforming Lives, One Donation At A Time'} />
             <p className="text-lg text-gray-600 mb-8">
               Make a difference in moments. Our secure online donation platform makes it easy to give—with multiple payment options and the flexibility to choose one-time or recurring contributions. Your generosity directly fuels our mission and touches lives in need.
             </p>

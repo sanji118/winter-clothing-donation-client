@@ -1,4 +1,6 @@
 import heart from '../../assets/images/heart.gif';
+import SectionHeading from '../../components/ui/SectionHeading';
+import SectionSubHeading from '../../components/ui/SectionSubHeading';
 
 const MakeADonation = () => {
 
@@ -6,11 +8,11 @@ const MakeADonation = () => {
     <div className="bg-cyan-900 p-5 md:p-20 my-20 text-white">
       {/* Header */}
       <div>
-        <p className="underdog text-cyan-500 font-bold text-xl italic">Make a Donation</p>
-        <h1 className="font-bold text-2xl md:text-3xl lg:text-5xl my-5 flex items-center gap-4">
-          Be the Reason Someone Smiles<br /> Volunteer or Donate Today
+        <SectionSubHeading text={'Make a donation'} />
+        <div className='flex items-start max-w-xl'>
+          <SectionHeading text={'Be the Reason Someone Smiles Volunteer or Donate Today'}/>
           <img src={heart} alt="heart" className="w-14 md:w-20" />
-        </h1>
+        </div>
         <p className="opacity-60">
           Our volunteers are the heartbeat of everything we do. Join us to create real change in your community.
           Whether you give a few hours or a few days, your time and talents make a lasting impact.

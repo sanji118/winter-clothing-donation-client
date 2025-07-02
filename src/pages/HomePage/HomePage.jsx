@@ -4,6 +4,7 @@ import DonateCharity from './DonateCharity';
 import CharityService from './CharityService';
 import MakeADonation from './MakeADonation';
 import Volunteers from './Volunteers';
+import Donations from './Donations';
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <CharityService/>
       <MakeADonation/>
       <Volunteers/>
+      <Donations/>
     </div>
   )
 }

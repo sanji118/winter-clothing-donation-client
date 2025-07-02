@@ -1,4 +1,6 @@
 import ServiceCard from '../../components/ServiceCard';
+import SectionHeading from '../../components/ui/SectionHeading';
+import SectionSubHeading from '../../components/ui/SectionSubHeading';
 
 const CharityService = () => {
     const services = [
@@ -30,8 +32,8 @@ const CharityService = () => {
   return (
     <div className='p-5 md:p-20 bg-[url(./charity-service-bg.png)] bg-no-repeat bg-cover'>
         <div className='text-center'>
-            <p className='underdog text-cyan-600 font-bold italic text-xl'>Charity Service</p>
-            <h1 className='text-2xl md:text-3xl lg:text-5xl mb-10 font-bold py-5'>For People. With Purpose. <br /> Guided by Humanity.</h1>
+            <SectionSubHeading text={'Charity Service'} />
+            <SectionHeading text={'For People. With Purpose. Guided by Humanity.'} />
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto h-fit'>
             {services.map((service, index) => (

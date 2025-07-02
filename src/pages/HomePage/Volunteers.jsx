@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import { Link } from "react-router-dom";
+import SectionSubHeading from "../../components/ui/SectionSubHeading";
+import SectionHeading from "../../components/ui/SectionHeading";
 
 const Volunteers = () => {
   const { data: volunteers = [], isLoading, isError, error } = useQuery({
@@ -20,8 +22,8 @@ const Volunteers = () => {
 
   return (
     <div className="p-5 md:p-20">
-      <h2 className="underdog text-cyan-600 italic">Meet Our Volunteers</h2>
-      <h1 className="text-2xl font-bold mb-8">Bright Minds, Big Hearts</h1>
+      <SectionSubHeading text={'Meet Our Volunteers'} />
+      <SectionHeading text={'Bright Minds, Big Hearts'} />
 
       <Swiper
         modules={[Autoplay]}
