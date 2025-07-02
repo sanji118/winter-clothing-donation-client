@@ -1,14 +1,59 @@
+import { useQuery } from "@tanstack/react-query"
 import SectionHeading from "../../components/ui/SectionHeading"
 import SectionSubHeading from "../../components/ui/SectionSubHeading"
+import axiosInstance from "../../hook/axiosInstance"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { motion } from 'framer-motion';
+import DonationCard from "../../components/DonationCard"
+import { Autoplay } from "swiper/modules"
+
 
 
 const Donations = () => {
+    const {data: donations = [], isLoading, isError, error} = useQuery({
+        queryKey: ['donations'],
+        queryFn: async () =>{
+            const res = await axiosInstance.get('/donations');
+            return res.data;
+        }
+    })
+
+    
+
+    if(isLoading) return <p className="text-cyan-600">Loading...</p>;
+    if(isError) return <p>Error: {error.message}</p>
+
+    
   return (
     <div className="bg-[url(./blue-watercolor-bg.avif)] bg-no-repeat bg-cover p-5 md:p-20">
         <div>
             <SectionSubHeading text={'Every Gift Counts — Let’s Give Together'} />
             <SectionHeading text={'Together, we turn kindness into real, lasting change that transforms lives'} />
         </div>
+        <Swiper
+        modules={[Autoplay]}
+        spaceBetween={30}
+        slidesPerView={3}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        breakpoints={{
+          320: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 }
+        }}
+        >
+            {
+                donations.map((donation) =>(
+                    <SwiperSlide key={donation._id}>
+                        <DonationCard key={donation._id} donation={donation} />
+                    </SwiperSlide>
+                ))
+            }
+        </Swiper>
+
     </div>
   )
 }
