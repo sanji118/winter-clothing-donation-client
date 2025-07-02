@@ -1,21 +1,19 @@
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import SectionHeading from "../../components/ui/SectionHeading"
 import SectionSubHeading from "../../components/ui/SectionSubHeading"
-import axiosInstance from "../../hook/axiosInstance"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { motion } from 'framer-motion';
 import DonationCard from "../../components/DonationCard"
 import { Autoplay } from "swiper/modules"
+import { getDonations } from "../../utils/useDonations"
 
 
 
 const Donations = () => {
+    const queryClient = useQueryClient();
     const {data: donations = [], isLoading, isError, error} = useQuery({
         queryKey: ['donations'],
-        queryFn: async () =>{
-            const res = await axiosInstance.get('/donations');
-            return res.data;
-        }
+        queryFn: getDonations,
     })
 
     

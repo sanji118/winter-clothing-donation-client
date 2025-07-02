@@ -7,14 +7,12 @@ import 'swiper/css';
 import { Link } from "react-router-dom";
 import SectionSubHeading from "../../components/ui/SectionSubHeading";
 import SectionHeading from "../../components/ui/SectionHeading";
+import { getVolunteers } from "../../utils/useVolunteers";
 
 const Volunteers = () => {
   const { data: volunteers = [], isLoading, isError, error } = useQuery({
     queryKey: ["volunteers"],
-    queryFn: async () => {
-      const res = await axiosInstance.get("/volunteers");
-      return res.data;
-    },
+    queryFn: getVolunteers,
   });
 
   if (isLoading) return <p>Loading...</p>;

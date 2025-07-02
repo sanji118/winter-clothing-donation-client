@@ -1,8 +1,9 @@
-import { useState} from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../utils/useAuth";
 import { motion } from "framer-motion";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
+import SidebarMenu from "./SidebarMenu";
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
@@ -17,14 +18,15 @@ const Navbar = () => {
 
   return (
     <>
-      
+      <SidebarMenu isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+
       <motion.div
-        className="navbar py-0 fixed top-0 z-50 text-white justify-between px-4 lg:px-8 bg-[#3cc2e83a]"
+        className="navbar py-0 fixed top-0 z-50 w-full text-white justify-between px-4 lg:px-8 bg-[#3cc2e83a] flex items-center"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        
+        {/* Logo */}
         <motion.img
           src="./logo.png"
           alt="CozyKindness"
@@ -32,9 +34,9 @@ const Navbar = () => {
           whileHover={{ scale: 1.05 }}
         />
 
-        {/* Desktop Nav */}
+        {/* Desktop Nav - only visible on large screens and up */}
         <motion.div
-          className="hidden md:flex bg-[#40acbb] h-fit rounded-full"
+          className="hidden lg:flex bg-[#40acbb] h-fit rounded-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -57,7 +59,7 @@ const Navbar = () => {
           </ul>
         </motion.div>
 
-        
+        {/* Right Side */}
         <div className="flex items-center gap-4">
           {user ? (
             <div className="flex gap-4 items-center">
@@ -80,10 +82,7 @@ const Navbar = () => {
               </motion.button>
             </div>
           ) : (
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 to="/auth"
                 className="btn border-none text-white bg-[#1E293B]/90 rounded-full shadow-none"
@@ -93,48 +92,13 @@ const Navbar = () => {
             </motion.div>
           )}
 
-          {/* Mobile Menu */}
-          <div className="dropdown dropdown-end md:hidden">
-            <label
-              tabIndex={0}
-              className="btn bg-[#1e293b] btn-circle border-none text-white hover:scale-110"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </label>
-
-            {isMenuOpen && (
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-[#40acbb] rounded-box w-52 space-y-2"
-              >
-                {publicNavLinks.map(link => (
-                  <li key={link.path}>
-                    <Link
-                      to={link.path}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="text-white hover:text-[#1E293B] font-medium"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-                {user && (
-                  <li>
-                    <button
-                      onClick={() => {
-                        signOutUser();
-                        setIsMenuOpen(false);
-                      }}
-                      className="text-white hover:text-[#1E293B] font-medium"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                )}
-              </ul>
-            )}
-          </div>
+          
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            className="btn bg-[#1E293B] text-white btn-circle border-none lg:hidden shadow-none"
+          >
+            <FiMenu size={24} />
+          </button>
         </div>
       </motion.div>
     </>
