@@ -1,13 +1,13 @@
 import React from 'react'
-import Banner from './Banner'
-import DonateCharity from './DonateCharity';
-import CharityService from './CharityService';
-import MakeADonation from './MakeADonation';
-import Volunteers from './Volunteers';
-import Donations from './Donations';
-import SuccessStory from './SuccessStory';
-import TestimonialSection from './TestimonialSection';
-import LocationSection from './LocationSection';
+import Banner from '../../components/Banner'
+import DonateCharity from '../../components/DonateCharity';
+import CharityService from '../../components/Charity/CharityService';
+import MakeADonation from '../../components/MakeADonation';
+import Volunteers from '../../components/Volunteers/Volunteers';
+import Donations from '../../components/Donations/Donations';
+import SuccessStory from '../../components/SuccessStory';
+import TestimonialSection from '../../components/TestimonialSection';
+import LocationSection from '../../components/Location/LocationSection';
 
 const HomePage = () => {
   return (

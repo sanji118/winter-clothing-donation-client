@@ -7,7 +7,6 @@ import DonationCompaigns from "../pages/DonationCompaigns/DonationCompaigns";
 import Dashboard from "../user/Dashboard";
 import HowToHelp from "../pages/HowToHelp/HowToHelp";
 import Profile from "../auth/Profile";
-import DonationDetails from "../pages/DonationCompaigns/DonationDetails";
 import PrivateRouter from "../providers/PrivateRouter";
 
 

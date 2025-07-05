@@ -1,6 +1,6 @@
 
-import SectionSubHeading from '../../components/ui/SectionSubHeading'
-import SectionHeading from '../../components/ui/SectionHeading'
+import SectionSubHeading from './ui/SectionSubHeading'
+import SectionHeading from './ui/SectionHeading'
 import { ArrowUpRight, QuoteIcon } from 'lucide-react'
 import {easeInOut, motion} from 'framer-motion';
 

@@ -1,6 +1,6 @@
-import heart from '../../assets/images/heart.gif';
-import SectionHeading from '../../components/ui/SectionHeading';
-import SectionSubHeading from '../../components/ui/SectionSubHeading';
+import heart from '../assets/images/heart.gif';
+import SectionHeading from './ui/SectionHeading';
+import SectionSubHeading from './ui/SectionSubHeading';
 
 const MakeADonation = () => {
 

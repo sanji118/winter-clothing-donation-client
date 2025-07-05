@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../../hook/axiosInstance";
 import { FaPlus } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import { Link } from "react-router-dom";
-import SectionSubHeading from "../../components/ui/SectionSubHeading";
-import SectionHeading from "../../components/ui/SectionHeading";
+import SectionSubHeading from "../ui/SectionSubHeading";
+import SectionHeading from "../ui/SectionHeading";
 import { getVolunteers } from "../../utils/useVolunteers";
 
 const Volunteers = () => {

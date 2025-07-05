@@ -1,11 +1,11 @@
-import fundRaising from '../../assets/images/fundraiser.png';
-import donation from '../../assets/images/donation.png';
-import image1 from '../../assets/images/donate-charity-1.png';
-import image2 from '../../assets/images/donate-charity-2.jpg';
-import image3 from '../../assets/images/donate-charity-3.jpg';
+import fundRaising from '../assets/images/fundraiser.png';
+import donation from '../assets/images/donation.png';
+import image1 from '../assets/images/donate-charity-1.png';
+import image2 from '../assets/images/donate-charity-2.jpg';
+import image3 from '../assets/images/donate-charity-3.jpg';
 import { motion } from 'framer-motion';
-import SectionSubHeading from '../../components/ui/SectionSubHeading';
-import SectionHeading from '../../components/ui/SectionHeading';
+import SectionSubHeading from './ui/SectionSubHeading';
+import SectionHeading from './ui/SectionHeading';
 
 const DonateCharity = () => {
   return (

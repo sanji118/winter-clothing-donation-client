@@ -1,6 +1,6 @@
-import ServiceCard from '../../components/ServiceCard';
-import SectionHeading from '../../components/ui/SectionHeading';
-import SectionSubHeading from '../../components/ui/SectionSubHeading';
+import ServiceCard from './ServiceCard';
+import SectionHeading from '../ui/SectionHeading';
+import SectionSubHeading from '../ui/SectionSubHeading';
 
 const CharityService = () => {
     const services = [

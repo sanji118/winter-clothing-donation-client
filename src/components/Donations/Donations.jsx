@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query"
-import SectionHeading from "../../components/ui/SectionHeading"
-import SectionSubHeading from "../../components/ui/SectionSubHeading"
+import SectionHeading from "../ui/SectionHeading"
+import SectionSubHeading from "../ui/SectionSubHeading"
 import { Swiper, SwiperSlide } from "swiper/react"
-import DonationCard from "../../components/DonationCard"
+import DonationCard from "./DonationCard"
 import { Autoplay } from "swiper/modules"
 import { getCampaigns } from "../../utils/useCampaigns"
 

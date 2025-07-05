@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import WavyText from "../components/WavyText";
+import WavyText from "../components/ui/WavyText";
 import RegisterForm from "./RegisterForm";
 
 const RegisterView = ({ toggleAuth }) => (
