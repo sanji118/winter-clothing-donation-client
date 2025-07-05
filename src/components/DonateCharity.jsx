@@ -6,6 +6,7 @@ import image3 from '../assets/images/donate-charity-3.jpg';
 import { motion } from 'framer-motion';
 import SectionSubHeading from './ui/SectionSubHeading';
 import SectionHeading from './ui/SectionHeading';
+import { Link } from 'react-router-dom';
 
 const DonateCharity = () => {
   return (
@@ -112,13 +113,16 @@ const DonateCharity = () => {
               </div>
             </div>
             
-            <motion.button 
-              className="btn rounded-full bg-cyan-600 hover:bg-cyan-700 text-white shadow-none px-6 py-4 sm:px-8 sm:py-6 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              About More
-            </motion.button>
+            <Link to={'/about'}>
+                <motion.button 
+                className="btn rounded-full bg-cyan-600 hover:bg-cyan-700 text-white shadow-none px-6 py-4 sm:px-8 sm:py-6 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                About More
+              </motion.button>
+            </Link>
+            
           </div>
         </div>
       </div>

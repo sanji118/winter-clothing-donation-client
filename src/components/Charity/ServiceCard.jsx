@@ -1,7 +1,8 @@
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-  const { title, photoUrl, iconPng, description } = service;
+  const { title, photoUrl, iconPng, description , path} = service;
 
   return (
     <div className="group shadow-lg rounded-3xl bg-white overflow-hidden hover:shadow-xl transition-shadow duration-300">
@@ -28,9 +29,9 @@ const ServiceCard = ({ service }) => {
       <div className="px-6 pb-8 text-center">
         <h1 className="font-medium text-2xl mb-4 group-hover:text-cyan-600 transition-colors duration-300">{title}</h1>
         <p className="text-gray-600 mb-6">{description}</p>
-        <button className="btn bg-cyan-500 hover:bg-cyan-600 text-white px-8 rounded-full py-3 transition-colors duration-300 flex items-center justify-center gap-2 mx-auto group-hover:bg-yellow-500">
+        <Link to={path}><button className="btn bg-cyan-500 hover:bg-cyan-600 text-white px-8 rounded-full py-3 transition-colors duration-300 flex items-center justify-center gap-2 mx-auto group-hover:bg-yellow-500">
           Learn More <FaArrowUpRightFromSquare />
-        </button>
+        </button></Link>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import heart from '../assets/images/heart.gif';
 import SectionHeading from './ui/SectionHeading';
 import SectionSubHeading from './ui/SectionSubHeading';
@@ -45,9 +46,9 @@ const MakeADonation = () => {
             <span className="text-gray-500">Goal: $10000</span>
           </div>
 
-          <button className="bg-cyan-600 hover:bg-cyan-700 transition px-6 py-3 rounded-full font-semibold text-white">
+          <Link to={'/donate'}><button className="bg-cyan-600 hover:bg-cyan-700 transition px-6 py-3 rounded-full font-semibold text-white">
             Donate Now
-          </button>
+          </button></Link>
         </div>
       </div>
     </div>

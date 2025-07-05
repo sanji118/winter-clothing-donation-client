@@ -1,8 +1,8 @@
-
 import SectionSubHeading from './ui/SectionSubHeading'
 import SectionHeading from './ui/SectionHeading'
 import { ArrowUpRight, QuoteIcon } from 'lucide-react'
 import {easeInOut, motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const SuccessStory = () => {
   return (
@@ -41,7 +41,7 @@ const SuccessStory = () => {
             <SectionSubHeading text={'Success Story'} />
             <SectionHeading text={'Equipping nonprofit leaders with funding, tools, and knowledge for impact.'} />
             <p className='opacity-70'>Our secure online donation platform lets you contribute quickly and safely. Choose from multiple payment methods and set up one-time or recurring donations with ease.</p>
-            <button className='btn bg-white rounded-full mt-10 py-6 px-6 shadow-none text-gray-700 border-black'>Our Success Story <ArrowUpRight/></button>
+            <Link to={'/testimonials'}><button className='btn bg-white rounded-full mt-10 py-6 px-6 shadow-none text-gray-700 border-black'>Our Success Story <ArrowUpRight/></button></Link>
         </div>
     </div>
   )

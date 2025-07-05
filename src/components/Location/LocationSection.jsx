@@ -8,7 +8,7 @@ import { CampaignMap } from './CampaignMap';
 import { DecorativeBgLocation } from './DecorativeBgLocation';
 import { LocationHeader } from './LocationHeader';
 
-export const LocationSection = () => {
+const LocationSection = () => {
   const { data: campaigns = [], isLoading, isError } = useQuery({
     queryKey: ['campaigns'],
     queryFn: getCampaigns,
@@ -52,3 +52,5 @@ export const LocationSection = () => {
     </section>
   );
 };
+
+export default LocationSection;

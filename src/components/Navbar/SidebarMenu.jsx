@@ -33,7 +33,6 @@ const SidebarMenu = ({ isOpen, setIsOpen }) => {
       title: "Blog",
       subLinks: [
         { name: "Latest Posts", path: "/blog" },
-        { name: "Archives", path: "/archive" },
       ],
     },
     {

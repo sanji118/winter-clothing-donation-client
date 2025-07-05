@@ -5,11 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import DonationCard from "./DonationCard"
 import { Autoplay } from "swiper/modules"
 import { getCampaigns } from "../../utils/useCampaigns"
+import { LoadingState } from "../ui/LoadingState"
 
 
 
 const Donations = () => {
-    const queryClient = useQueryClient();
     const {data: donations = [], isLoading, isError, error} = useQuery({
         queryKey: ['/campaigns'],
         queryFn: getCampaigns,
@@ -17,14 +17,14 @@ const Donations = () => {
 
     
 
-    if(isLoading) return <p className="text-cyan-600">Loading...</p>;
+    if(isLoading) return <LoadingState/>;
     if(isError) return <p>Error: {error.message}</p>
 
     
   return (
     <div className="bg-[url(./blue-watercolor-bg.avif)] bg-no-repeat bg-cover p-5 md:p-20">
         <div>
-            <SectionSubHeading text={'Every Gift Counts — Let’s Give Together'} />
+            <SectionSubHeading text={'Every Gift Counts, Let’s Give Together'} />
             <SectionHeading text={'Together, we turn kindness into real, lasting change that transforms lives'} />
         </div>
         <Swiper
@@ -55,4 +55,4 @@ const Donations = () => {
   )
 }
 
-export default Donations
+export default Donations;

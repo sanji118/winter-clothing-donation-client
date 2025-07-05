@@ -8,25 +8,29 @@ const CharityService = () => {
         title: "Winter Clothing Drive",
         description: "Help vulnerable communities stay warm this winter by donating coats, sweaters, and blankets.",
         photoUrl: "https://i.postimg.cc/y85d70LF/children.avif",
-        iconPng: "https://i.postimg.cc/15hb1X0f/coat.png"
+        iconPng: "https://i.postimg.cc/15hb1X0f/coat.png",
+        path: "/how-to-help"
     },
     {
         title: "Volunteer Network",
         description: "Join our team to distribute winter essentials in rural and low-income areas.",
         photoUrl: "https://i.postimg.cc/m2mk6vMp/donation.webp",
-        iconPng: "https://i.postimg.cc/TYVFdxQQ/partners.png"
+        iconPng: "https://i.postimg.cc/TYVFdxQQ/partners.png",
+        path: "/become-volunteer"
     },
     {
         title: "Donation Tracker",
         description: "See real-time impact of your donations through our transparent tracking system.",
         photoUrl: "https://i.postimg.cc/134Xxvrm/handwrittengive.webp",
-        iconPng: "https://i.postimg.cc/v86CKfVJ/analysis.png"
+        iconPng: "https://i.postimg.cc/v86CKfVJ/analysis.png",
+        path: "/campaigns"
     },
     {
         title: "Warmth Kits",
         description: "Sponsor pre-packaged kits with blankets, socks and hats for remote areas.",
         photoUrl: "https://i.postimg.cc/rFVzjVdt/makeachange.avif",
-        iconPng: "https://i.postimg.cc/j2N9JYTx/boxes.png"
+        iconPng: "https://i.postimg.cc/j2N9JYTx/boxes.png",
+        path: "/donate"
     }
     ]
   return (

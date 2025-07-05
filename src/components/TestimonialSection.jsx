@@ -37,7 +37,7 @@ const TestimonialSection = () => {
                 animate={{opacity: 1}}
                 transition={{duration: 0.5}}
                 >
-                    <div className="relative w-64 md:w-92 h-80 md:h-96 left-10 md:left-20">
+                    <div className="relative w-64 md:w-92 h-80 md:h-96 left-10 md:left-20 lg:left-0">
                         <div>
                             <img 
                             src={testimonial.image} 

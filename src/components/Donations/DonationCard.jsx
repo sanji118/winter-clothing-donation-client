@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { FiMapPin } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const DonationCard = ({ donation }) => {
   const { title, image, raised, goal, division, status } = donation;
@@ -56,9 +57,9 @@ const DonationCard = ({ donation }) => {
       </div>
 
       
-      <button className="mt-5 flex items-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-4 py-2 rounded-lg transition">
+      <Link to={'/donate'}><button className="mt-5 flex items-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-4 py-2 rounded-lg transition">
         Donate Now <ArrowRight size={16} />
-      </button>
+      </button></Link>
     </div>
   );
 };
