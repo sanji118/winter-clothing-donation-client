@@ -7,6 +7,7 @@ import Volunteers from './Volunteers';
 import Donations from './Donations';
 import SuccessStory from './SuccessStory';
 import TestimonialSection from './TestimonialSection';
+import LocationSection from './LocationSection';
 
 const HomePage = () => {
   return (
@@ -19,6 +20,7 @@ const HomePage = () => {
       <Donations/>
       <SuccessStory/>
       <TestimonialSection/>
+      <LocationSection/>
     </div>
   )
 }

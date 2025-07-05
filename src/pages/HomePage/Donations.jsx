@@ -2,18 +2,17 @@ import { useQuery, useQueryClient } from "@tanstack/react-query"
 import SectionHeading from "../../components/ui/SectionHeading"
 import SectionSubHeading from "../../components/ui/SectionSubHeading"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { motion } from 'framer-motion';
 import DonationCard from "../../components/DonationCard"
 import { Autoplay } from "swiper/modules"
-import { getDonations } from "../../utils/useDonations"
+import { getCampaigns } from "../../utils/useCampaigns"
 
 
 
 const Donations = () => {
     const queryClient = useQueryClient();
     const {data: donations = [], isLoading, isError, error} = useQuery({
-        queryKey: ['donations'],
-        queryFn: getDonations,
+        queryKey: ['/campaigns'],
+        queryFn: getCampaigns,
     })
 
     

@@ -18,7 +18,7 @@ const SidebarMenu = ({ isOpen, setIsOpen }) => {
     {
       title: "Donations",
       subLinks: [
-        { name: "All Campaigns", path: "/donations" },
+        { name: "All Campaigns", path: "/campaigns" },
         { name: "Donate Now", path: "/donate" },
       ],
     },

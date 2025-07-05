@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const publicNavLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Donation Campaigns', path: '/donations' },
+    { name: 'Donation Campaigns', path: '/campaigns' },
     { name: 'How to Help', path: '/how-to-help' },
     { name: 'Dashboard', path: '/dashboard' }
   ];
