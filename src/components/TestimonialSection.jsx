@@ -12,7 +12,7 @@ const TestimonialSection = () => {
         queryKey: ['/testimonials'],
         queryFn: getTestimonials
     })
-
+    
     useEffect(() =>{
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % testimonials.length);

@@ -24,7 +24,7 @@ export const CampaignMap = ({ campaigns }) => (
     whileInView={{ opacity: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.8 }}
-    className="mt-28 relative"
+    className="mt-28 relative z-1"
   >
     <div className="absolute -top-20 left-0 right-0 flex justify-center">
       <div className="bg-white px-8 py-3 rounded-full shadow-xl border border-gray-200 flex items-center">

@@ -7,6 +7,7 @@ import Donations from '../../components/Donations/Donations';
 import SuccessStory from '../../components/SuccessStory';
 import TestimonialSection from '../../components/TestimonialSection';
 import LocationSection from '../../components/Location/LocationSection';
+import NewsAndArticle from '../../components/NewsAndArticle';
 
 const HomePage = () => {
   return (
@@ -20,6 +21,7 @@ const HomePage = () => {
       <SuccessStory/>
       <TestimonialSection/>
       <LocationSection/>
+      <NewsAndArticle/>
     </div>
   )
 }

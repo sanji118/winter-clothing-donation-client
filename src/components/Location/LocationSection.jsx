@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { getCampaigns } from '../../utils/useCampaigns';
 import { LoadingState } from '../ui/LoadingState';
-import { ErrorState } from './ErrorState';
+import { ErrorState } from '../ui/ErrorState';
 import { DivisionSection } from './DivisionSection';
 import { CampaignMap } from './CampaignMap';
 import { DecorativeBgLocation } from './DecorativeBgLocation';
@@ -22,7 +22,7 @@ const LocationSection = () => {
     return acc;
   }, {});
 
-  if (isLoading) return <LoadingState />;
+  if (isLoading) return <LoadingState name={'Campaigns'}/>;
   if (isError) return <ErrorState />;
 
   return (
