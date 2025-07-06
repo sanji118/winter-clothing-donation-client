@@ -21,7 +21,7 @@ const Navbar = () => {
       <SidebarMenu isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
 
       <motion.div
-        className="navbar py-0 fixed top-0 z-50 w-full text-white justify-between px-4 lg:px-8 bg-[#3cc2e83a] flex items-center"
+        className="navbar py-0 fixed top-0 z-50 w-full text-white justify-between px-4 lg:px-8 bg-[#0c3a46] flex items-center"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -34,9 +34,9 @@ const Navbar = () => {
           whileHover={{ scale: 1.05 }}
         />
 
-        {/* Desktop Nav - only visible on large screens and up */}
+        
         <motion.div
-          className="hidden lg:flex bg-[#40acbb] h-fit rounded-full"
+          className="hidden md:flex bg-[#40acbb] h-fit rounded-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}

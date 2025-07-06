@@ -3,7 +3,7 @@ import blackBrushStroke from '../../assets/images/black-brush-stroke-corner.png'
 
 const BlogCard = ({ blog }) => {
   return (
-    <div className="max-w-md mx-auto rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-[1.03] hover:shadow-2xl bg-white flex flex-col">
+    <div className=" mx-auto rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-[1.03] hover:shadow-2xl bg-white flex flex-col border border-[#77d5d5]">
       <div className="relative h-52 flex-shrink-0">
         <img src={blog.image} alt={blog.title} className=" w-full h-full object-cover" />
         <img
@@ -18,11 +18,11 @@ const BlogCard = ({ blog }) => {
       </div>
 
       {/* Content */}
-      <div className="flex-grow px-6 py-4 bg-gradient-to-br from-white to-gray-100">
+      <div className="flex-grow px-6 py-4">
         <h2 className="text-lg font-bold text-navy-900 hover:text-cyan-600 transition-colors duration-200 line-clamp-2">
           {blog.title}
         </h2>
-        <p className="text-sm text-gray-600 mt-2 line-clamp-2">{blog.excerpt}</p>
+        <p className="text-sm text-gray-600 mt-2 line-clamp-2">{blog.content.slice(0,200)}...</p>
 
         {/* Author & Meta Info */}
         <div className="flex items-center justify-between mt-4">
