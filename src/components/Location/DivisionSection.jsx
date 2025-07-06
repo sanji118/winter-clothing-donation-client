@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaHandsHelping, FaTree, FaMountain, FaWater, FaCity, FaSeedling, FaLeaf} from 'react-icons/fa';
 import { CampaignCard } from './CampaignCard';
+import { Link } from 'react-router-dom';
 
 
 const getDivisionIcon = (division) => {
@@ -41,11 +42,11 @@ export const DivisionSection = ({ division, campaigns }) => (
 
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {campaigns.map((campaign, index) => (
-        <CampaignCard 
+        <Link to={'/campaigns'}><CampaignCard 
           key={campaign.title} 
           campaign={campaign} 
           index={index} 
-        />
+        /></Link>
       ))}
     </div>
   </motion.div>
