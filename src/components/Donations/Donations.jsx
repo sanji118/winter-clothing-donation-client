@@ -6,6 +6,7 @@ import DonationCard from "./DonationCard"
 import { Autoplay } from "swiper/modules"
 import { getCampaigns } from "../../utils/useCampaigns"
 import { LoadingState } from "../ui/LoadingState"
+import { ErrorState } from "../ui/ErrorState"
 
 
 
@@ -17,8 +18,8 @@ const Donations = () => {
 
     
 
-    if(isLoading) return <LoadingState/>;
-    if(isError) return <p>Error: {error.message}</p>
+    if(isLoading) return <LoadingState name={'Donations'}/>;
+    if(isError) return <ErrorState name={'Donations'} />
 
     
   return (

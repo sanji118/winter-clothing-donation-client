@@ -13,11 +13,11 @@ import TeamPage from "../pages/AboutUs/TeamPage";
 import DonateNow from "../pages/DonateNow/DonateNow";
 import Gallery from "../pages/Gallery/Gallery";
 import TestimonialsPage from "../pages/TestimonialsPage/TestimonialsPage";
-import Blog from "../pages/Blog/Blog";
 import Contact from "../pages/Contact/Contact";
 import Faq from "../pages/Faq/Faq";
 import BecomeVolunteer from "../pages/BecomeVolunteer/BecomeVolunteer";
 import VolunteerPage from "../pages/VolunteerPage/VolunteerPage";
+import BlogPage from "../pages/BlogPage/BlogPage";
 
 export const router = createBrowserRouter([
     {
@@ -54,8 +54,8 @@ export const router = createBrowserRouter([
                 element: <TestimonialsPage />
             },
             {
-                path: '/blog',
-                element: <Blog />
+                path: '/blogs',
+                element: <BlogPage />
             },
             {
                 path: '/contact',

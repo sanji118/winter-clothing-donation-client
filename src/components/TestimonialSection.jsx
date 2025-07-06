@@ -5,6 +5,8 @@ import { getTestimonials } from '../utils/useTestimonials'
 import { useEffect, useState } from 'react'
 import {motion, AnimatePresence } from 'framer-motion'
 import { FaStar } from 'react-icons/fa6'
+import { LoadingState } from './ui/LoadingState'
+import { ErrorState } from './ui/ErrorState'
 
 const TestimonialSection = () => {
     const [index, setIndex] = useState(0);
@@ -12,7 +14,7 @@ const TestimonialSection = () => {
         queryKey: ['/testimonials'],
         queryFn: getTestimonials
     })
-    
+
     useEffect(() =>{
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % testimonials.length);
@@ -23,8 +25,8 @@ const TestimonialSection = () => {
     const testimonial = testimonials[index];
     const progress = Math.min(index / (testimonials.length) * 100 , 100) ;
 
-    if(isLoading) return <p>Loading...</p>
-    if(isError) return <p>Error : {error}</p>
+    if(isLoading) return <LoadingState name={'Testimonials'} />
+    if(isError) return <ErrorState name={'Testimonials'} />
 
 
   return (

@@ -23,7 +23,7 @@ const LocationSection = () => {
   }, {});
 
   if (isLoading) return <LoadingState name={'Campaigns'}/>;
-  if (isError) return <ErrorState />;
+  if (isError) return <ErrorState name={'Campaigns'} />;
 
   return (
     <section className="px-4 py-10 relative overflow-hidden">

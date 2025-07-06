@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import SectionSubHeading from "../ui/SectionSubHeading";
 import SectionHeading from "../ui/SectionHeading";
 import { getVolunteers } from "../../utils/useVolunteers";
+import { LoadingState } from "../ui/LoadingState";
+import { ErrorState } from "../ui/ErrorState";
 
 const Volunteers = () => {
   const { data: volunteers = [], isLoading, isError, error } = useQuery({
@@ -14,8 +16,8 @@ const Volunteers = () => {
     queryFn: getVolunteers,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error: {error.message}</p>;
+  if (isLoading) return <LoadingState name={'Volunteers'} />;
+  if (isError) return <ErrorState name={'Volunteers'} />;
 
   return (
     <div className="p-5 md:p-20">
