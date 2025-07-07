@@ -5,8 +5,8 @@ import { LoadingState } from "../../components/ui/LoadingState";
 import { ErrorState } from "../../components/ui/ErrorState";
 import BlogCard from "../../components/Blogs/BlogCard";
 import Sidebar from "../../components/Blogs/Sidebar";
-import BlogDetails from '../../components/Blogs/BlogDetails';
 import { useNavigate, useParams } from 'react-router-dom';
+import BlogDetails from '../../components/Blogs/BlogDetails/BlogDetails';
 
 const BlogPage = () => {
   const {id} = useParams();
@@ -55,7 +55,7 @@ const BlogPage = () => {
       </div>
 
       
-      <div className="grid grid-cols-1 p-5 lg:grid-cols-3 md:p-20">
+      <div className="grid grid-cols-1 p-5 lg:grid-cols-3 gap-10 md:p-20">
         
         {/* Blog List / Blog Details */}
         <div className="flex flex-col items-center gap-10 w-full lg:col-span-2">

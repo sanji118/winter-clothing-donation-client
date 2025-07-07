@@ -32,7 +32,7 @@ const Sidebar = ({
     .map(([tag]) => tag);
 
   return (
-    <div className='grid grid-cols-1 gap-10 mt-10 lg:mt-0'>
+    <div className='grid grid-cols-1 gap-10 mt-10 lg:mt-0 h-fit'>
       {/* Search bar */}
       <div className="bg-gray-100 p-5 md:p-8 rounded-2xl">
         <Searchbar
