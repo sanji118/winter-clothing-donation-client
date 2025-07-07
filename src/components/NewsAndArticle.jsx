@@ -51,7 +51,7 @@ const NewsAndArticle = () => {
             {
                 latestBlogs.map((blog) =>(
                     <SwiperSlide key={blog._id} className='max-w-md' >
-                        <BlogCard key={blog._id} blog={blog} />
+                        <BlogCard key={blog._id} blog={blog}/>
                     </SwiperSlide>
                 ))
             }

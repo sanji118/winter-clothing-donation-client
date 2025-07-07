@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaCalendar } from 'react-icons/fa6'
+import { Link } from 'react-router-dom'
 
 const RecentPosts = ({ recentBlogs }) => {
   return (
@@ -8,7 +9,8 @@ const RecentPosts = ({ recentBlogs }) => {
       <div className='flex flex-col gap-5'>
         {
           recentBlogs.map(blog => (
-            <div
+            <Link
+            to={`/blogs/${blog._id}`}
               key={blog._id}
               className='group flex gap-5 items-center transition-all duration-300 ease-in-out cursor-pointer'
             >
@@ -28,7 +30,7 @@ const RecentPosts = ({ recentBlogs }) => {
                   {(blog.title).slice(0, 40)}...
                 </h2>
               </div>
-            </div>
+            </Link>
           ))
         }
       </div>

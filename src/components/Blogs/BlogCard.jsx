@@ -1,9 +1,17 @@
 import { Eye, Heart, Clock, Calendar } from 'lucide-react';
 import blackBrushStroke from '../../assets/images/black-brush-stroke-corner.png';
+import { useNavigate } from 'react-router-dom';
 
-const BlogCard = ({ blog }) => {
+const BlogCard = ({ blog}) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/blogs/${blog._id}`)
+    };
+
+
   return (
-    <div className=" mx-auto rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-[1.03] hover:shadow-2xl bg-white flex flex-col border border-[#77d5d5]">
+    <div onClick={handleClick} className=" mx-auto rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-[1.03] hover:shadow-2xl bg-white flex flex-col border border-[#77d5d5]">
       <div className="relative h-52 flex-shrink-0">
         <img src={blog.image} alt={blog.title} className=" w-full h-full object-cover" />
         <img
@@ -69,7 +77,7 @@ const BlogCard = ({ blog }) => {
             {blog.likes}
           </span>
         </div>
-        <button className="px-4 py-1 text-xs font-bold bg-fuchsia-300 rounded-md  transition-all duration-300 uppercase">
+        <button onClick={handleClick} className="px-4 py-1 text-xs font-bold bg-fuchsia-300 rounded-md  transition-all duration-300 uppercase">
           Read More
         </button>
       </div>
