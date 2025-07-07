@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "../../utils/useBlogs";
 import { LoadingState } from "../../components/ui/LoadingState";
@@ -6,17 +7,25 @@ import BlogCard from "../../components/Blogs/BlogCard";
 import Sidebar from "../../components/Blogs/Sidebar";
 
 const BlogPage = () => {
-  const {data: blogs = [], isLoading, isError, error} = useQuery({
+  const { data: blogs = [], isLoading, isError } = useQuery({
     queryKey: ['blogs'],
     queryFn: getBlogs,
-  })
+  });
 
-  if(isLoading) return <LoadingState name={'Blogs'} />;
-  if(isError) return <ErrorState name={'Blogs'}/>;
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
+  
+  const filteredBlogs = blogs
+    .filter(blog => selectedTag ? blog.tags.includes(selectedTag) : true)
+    .filter(blog => blog.title.toLowerCase().includes(searchTerm.toLowerCase()))
+
+  if (isLoading) return <LoadingState name={'Blogs'} />;
+  if (isError) return <ErrorState name={'Blogs'} />;
 
   return (
     <div>
+      {/* Banner */}
       <div
         className='w-full h-screen bg-cover bg-no-repeat bg-center grayscale-40 flex justify-center items-center'
         style={{
@@ -26,23 +35,36 @@ const BlogPage = () => {
           `
         }}
       >
-        <h1 className="text-2xl text-center md:text-5xl lg:text-7xl font-bold text-white underdog">Our Blog</h1>
+        <h1 className="text-2xl text-center md:text-5xl lg:text-7xl font-bold text-white underdog">
+          Our Blog
+        </h1>
       </div>
 
+      {/* Blog list + Sidebar */}
       <div className="grid grid-cols-1 p-5 lg:grid-cols-3 md:p-20">
         <div className="flex flex-col items-center gap-10 w-full lg:col-span-2">
-          {
-            blogs.map((blog) =>(
-              <div className="max-w-2xl w-full shadow-md rounded-2xl"><BlogCard key={blog._id} blog={blog} /></div>
+          {filteredBlogs.length === 0 ? (
+            <p className="text-center text-gray-500">No blogs found for this tag or search.</p>
+          ) : (
+            filteredBlogs.map(blog => (
+              <div key={blog._id} className="max-w-2xl w-full shadow-md rounded-2xl">
+                <BlogCard blog={blog} />
+              </div>
             ))
-          }
+          )}
         </div>
         <div>
-          <Sidebar blogs={blogs}/>
+          <Sidebar
+            blogs={blogs}
+            setSelectedTag={setSelectedTag}
+            selectedTag={selectedTag}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default BlogPage;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RecentPosts = () => {
+const RecentPosts = ({recentBlogs}) => {
   return (
     <div>RecentPosts</div>
   )
