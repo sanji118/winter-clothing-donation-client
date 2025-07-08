@@ -1,8 +1,14 @@
-import React from 'react'
+import FaqBanner from '../../../public/pageBanners/faq-banner.png'
+import PageBanner from '../../components/ui/PageBanner'
 
 const Faq = () => {
   return (
-    <div>Faq</div>
+    <div>
+      <PageBanner image={FaqBanner} title={'FAQs'} />
+      <div>
+        
+      </div>
+    </div>
   )
 }
 

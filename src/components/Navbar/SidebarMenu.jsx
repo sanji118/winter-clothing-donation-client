@@ -13,6 +13,7 @@ const SidebarMenu = ({ isOpen, setIsOpen }) => {
       subLinks: [
         { name: "Who We Are", path: "/about" },
         { name: "Team", path: "/team" },
+        { name: "FAQs", path: "/faqs" },
       ],
     },
     {
@@ -48,13 +49,13 @@ const SidebarMenu = ({ isOpen, setIsOpen }) => {
     <>
       {isOpen && (
         <>
-          {/* ✅ Fixed Overlay */}
+          
           <div
             onClick={() => setIsOpen(false)}
             className="fixed inset-0 z-[99]"
           />
 
-          {/* ✅ Sidebar now has higher z-index than navbar */}
+          
           <motion.div
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}

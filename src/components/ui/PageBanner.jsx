@@ -4,14 +4,15 @@ const PageBanner = ({image, title, subtitle}) => {
   return (
     <div className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center">
         <div 
-          className={`absolute inset-0 bg-[url(${image})] bg-cover bg-no-repeat bg-center`}
+          className={`absolute inset-0 bg-cover bg-no-repeat bg-center`}
           style={{
+            backgroundImage: `url(${image})`,
             transform: "translateZ(0)",
             willChange: "transform",
             backgroundAttachment: "fixed"
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1b9e9c] to-[#1b9e9ca3] opacity-90"></div>
+        <div className="absolute inset-0 bg-[#835712c9]"></div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
