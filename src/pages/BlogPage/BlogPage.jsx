@@ -7,6 +7,7 @@ import BlogCard from "../../components/Blogs/BlogCard";
 import Sidebar from "../../components/Blogs/Sidebar";
 import { useNavigate, useParams } from 'react-router-dom';
 import BlogDetails from '../../components/Blogs/BlogDetails/BlogDetails';
+import PageBanner from '../../components/ui/PageBanner';
 
 const BlogPage = () => {
   const {id} = useParams();
@@ -42,22 +43,12 @@ const BlogPage = () => {
   return (
     <div>
       {/* Banner */}
-      <div
-        className='w-full h-[80vh] bg-cover bg-no-repeat bg-center grayscale-40 flex justify-center items-center'
-        style={{
-          backgroundImage: `
-            linear-gradient(to bottom, rgba(0, 94, 107, 0.8), rgba(0, 168, 168, 0.7)),
-            url('./pageBanners/blogBanner.jpg')
-          `
-        }}
-      >
-        <h1 className="text-2xl text-center md:text-5xl lg:text-7xl font-bold text-white underdog">Our Blog</h1>
-      </div>
+      <PageBanner image={'./pageBanners/blogBanner.jpg'} title={'Our blog'} subtitle={''} />
 
       
       <div className="grid grid-cols-1 p-5 lg:grid-cols-3 gap-10 md:p-20">
         
-        {/* Blog List / Blog Details */}
+        {/* Blog Details */}
         <div className="flex flex-col items-center gap-10 w-full lg:col-span-2">
           {
             selectedBlog ? (

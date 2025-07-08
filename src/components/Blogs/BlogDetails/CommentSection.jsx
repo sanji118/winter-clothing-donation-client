@@ -9,25 +9,27 @@ const CommentsSection = ({ blog }) => {
     const queryClient = useQueryClient();
 
     const { mutate: addComment, isPending } = useMutation({
-        mutationFn: ({ id, commentData }) => postCommentToBlog(id, commentData),
+        mutationFn: ({ id, newComment }) => postCommentToBlog({id, newComment}),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['blogs', blog._id] });
+            queryClient.invalidateQueries({ queryKey: ['blogs'] });
         }
     });
+    
 
     const handleComment = e => {
         e.preventDefault();
         const form = e.target;
         const comment = form.comment.value;
         const newComment = {
-            text: comment,
+            comment: comment,
             user: {
                 name: user?.displayName,
                 email: user?.email,
                 avatar: user?.photoURL 
             }
         }; 
-        addComment({ id: blog._id, commentData: newComment });
+        addComment({ id: blog._id, newComment : newComment });
+        console.log( newComment);
         form.reset();
     };
     
@@ -77,6 +79,9 @@ const CommentsSection = ({ blog }) => {
                                         </button>
                                         <button className="text-xs text-amber-600 hover:text-amber-800 font-medium flex items-center gap-1 transition">
                                             <FaHeart className="text-xs opacity-70 group-hover:opacity-100" /> Like
+                                        </button>
+                                        <button className="text-xs text-red-600 hover:text-red-800 font-medium flex items-center gap-1 transition">
+                                            Delete
                                         </button>
                                     </div>
                                 </div>

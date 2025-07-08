@@ -4,6 +4,7 @@ import { LoadingState } from "../../components/ui/LoadingState";
 import { ErrorState } from "../../components/ui/ErrorState";
 import { motion } from "framer-motion";
 import { FaHeart, FaShare, FaCalendarAlt, FaUser, FaCampground } from "react-icons/fa";
+import PageBanner from "../../components/ui/PageBanner";
 
 const Gallery = () => {
   const { data: photos = [], isLoading, isError } = useQuery({
@@ -32,31 +33,7 @@ const Gallery = () => {
 
   return (
     <div className="overflow-hidden">
-      {/* Enhanced Banner with Parallax Effect */}
-      <div className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center">
-        <div 
-          className="absolute inset-0 bg-[url(./pageBanners/gallery-banner.jpg)] bg-cover bg-no-repeat bg-center"
-          style={{
-            transform: "translateZ(0)",
-            willChange: "transform",
-            backgroundAttachment: "fixed"
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1b9e9c] to-[#1b9e9ca3] opacity-90"></div>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center px-4"
-        >
-          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white underdog mb-6">
-            Our Gallery
-          </h1>
-          <p className="text-lg md:text-xl text-white opacity-90 max-w-2xl mx-auto">
-            Capturing moments, creating memories
-          </p>
-        </motion.div>
-      </div>
+      <PageBanner image={'./pageBanners/gallery-banner.jpg'} title={'Our Gallery'} subtitle={'Capturing moments, creating memories'} />
 
       {/* Gallery Grid with Hover Flip Cards */}
       <div className="max-w-7xl mx-auto px-4 py-16">
