@@ -2,7 +2,7 @@ import {motion} from 'framer-motion';
 
 const PageBanner = ({image, title, subtitle}) => {
   return (
-    <div className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center">
+    <div className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
         <div 
           className={`absolute inset-0 bg-cover bg-no-repeat bg-center`}
           style={{
