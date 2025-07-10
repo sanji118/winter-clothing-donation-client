@@ -13,7 +13,7 @@ const AboutUs = () => {
       subtitle="Bringing Warmth to Those in Need"
       image={image}
       />
-      <div>
+      <div className="p-5 md:p-20">
         <MissionSection/>
         <Stats/>
       </div>
