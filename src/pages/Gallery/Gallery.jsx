@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPhotos } from "../../utils/useGallery";
+import { getPhotos } from "../../services/galleryService";
 import { LoadingState } from "../../components/ui/LoadingState";
 import { ErrorState } from "../../components/ui/ErrorState";
 import { motion } from "framer-motion";

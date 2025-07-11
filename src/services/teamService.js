@@ -1,4 +1,4 @@
-import axiosInstance from "../hook/axiosInstance"
+import axiosInstance from "../hooks/axiosInstance"
 
 export const getTeam = async () => {
     const result = await axiosInstance.get('/team');

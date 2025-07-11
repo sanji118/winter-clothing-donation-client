@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import FaqBanner from '../../../public/pageBanners/faq-banner.png'
 import PageBanner from '../../components/ui/PageBanner'
-import { getFAQs } from '../../utils/useFaqs'
+import { getFAQs } from '../../services/faqService'
 import SectionSubHeading from '../../components/ui/SectionSubHeading'
 import SectionHeading from '../../components/ui/SectionHeading'
 import { ErrorState } from '../../components/ui/ErrorState'

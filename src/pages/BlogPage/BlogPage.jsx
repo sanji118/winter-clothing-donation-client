@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
-import { getBlogs } from "../../utils/useBlogs";
+import { getBlogs } from "../../services/blogService";
 import { LoadingState } from "../../components/ui/LoadingState";
 import { ErrorState } from "../../components/ui/ErrorState";
 import BlogCard from "../../components/Blogs/BlogCard";

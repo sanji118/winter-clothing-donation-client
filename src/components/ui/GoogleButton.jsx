@@ -1,5 +1,5 @@
 import { FcGoogle } from 'react-icons/fc';
-import useAuth from '../../utils/useAuth';
+import useAuth from '../../services/authService';
 
 const GoogleButton = () => {
   const {signInWithGoogle} = useAuth();

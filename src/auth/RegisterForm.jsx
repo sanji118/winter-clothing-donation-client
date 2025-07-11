@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import GoogleButton from "../components/ui/GoogleButton";
 import Input from "../components/ui/Input";
-import useAuth from "../utils/useAuth";
+import useAuth from "../services/authService";
 import Swal from "sweetalert2";
 import { Form, useNavigate } from "react-router-dom";
 import { useState } from "react";

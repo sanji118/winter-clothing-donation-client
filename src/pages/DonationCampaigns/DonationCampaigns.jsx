@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getCampaigns } from '../../utils/useCampaigns';
+import { getCampaigns } from '../../services/campaignService';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import image from '../../../public/pageBanners/campaign-banner.jpg';

@@ -1,12 +1,12 @@
 import { FaRegComment, FaUserCircle, FaSpinner, FaHeart, FaReply } from 'react-icons/fa';
 import { IoMdSend } from 'react-icons/io';
-import useAuth from '../utils/useAuth';
+import useAuth from '../services/authService';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const CommentsSection = ({ 
     id, 
     comments = [], 
-    type = 'blog', // or 'donation'
+    type = 'blog',
     postCommentFunction 
 }) => {
     const { user } = useAuth();
@@ -15,7 +15,9 @@ const CommentsSection = ({
     const { mutate: addComment, isPending } = useMutation({
         mutationFn: ({ id, newComment }) => postCommentFunction({ id, newComment }),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: [type === 'blog' ? 'blogs' : 'donations'] });
+            queryClient.invalidateQueries({
+                queryKey: [type === 'blog' ? 'blogs' : 'donations']
+            })
         }
     });
 
@@ -67,7 +69,7 @@ const CommentsSection = ({
                                 )}
                                 <div className="flex-1">
                                     <div className="flex items-baseline flex-wrap gap-2">
-                                        <h4 className="font-medium text-gray-800">{comment.user?.name}</h4>
+                                        <h4 className="font-medium text-gray-800">{comment.user?.name || comment.user.split('@')[0]}</h4>
                                         <span className="text-xs text-amber-500 bg-amber-50 px-2 py-1 rounded-full">
                                             {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                         </span>

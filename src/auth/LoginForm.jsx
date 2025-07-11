@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FiMail, FiLock } from 'react-icons/fi';
 import GoogleButton from "../components/ui/GoogleButton";
 import Input from "../components/ui/Input";
-import useAuth from "../utils/useAuth";
+import useAuth from "../services/authService";
 import { Result } from "postcss";
 import { useNavigate } from "react-router-dom";
 import { Flip, toast } from "react-toastify";

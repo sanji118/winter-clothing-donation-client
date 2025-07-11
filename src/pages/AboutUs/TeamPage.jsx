@@ -3,7 +3,7 @@ import teamBanner from '../../../public/pageBanners/team-banner.jpg'
 import { ErrorState } from '../../components/ui/ErrorState'
 import { LoadingState } from '../../components/ui/LoadingState'
 import PageBanner from '../../components/ui/PageBanner'
-import { getTeam } from '../../utils/useTeam'
+import { getTeam } from '../../services/teamService'
 import TeamSection from '../../components/TeamPage/TeamSection'
 import TeamCTASection from '../../components/TeamPage/TeamCTASection'
 

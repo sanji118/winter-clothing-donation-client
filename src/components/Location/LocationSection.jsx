@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { getCampaigns } from '../../utils/useCampaigns';
+import { getCampaigns } from '../../services/campaignService';
 import { LoadingState } from '../ui/LoadingState';
 import { ErrorState } from '../ui/ErrorState';
 import { DivisionSection } from './DivisionSection';

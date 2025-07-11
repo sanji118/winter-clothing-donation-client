@@ -4,7 +4,7 @@ import SectionSubHeading from "../ui/SectionSubHeading"
 import { Swiper, SwiperSlide } from "swiper/react"
 import DonationCard from "./DonationCard"
 import { Autoplay } from "swiper/modules"
-import { getCampaigns } from "../../utils/useCampaigns"
+import { getCampaigns } from "../../services/campaignService"
 import { LoadingState } from "../ui/LoadingState"
 import { ErrorState } from "../ui/ErrorState"
 

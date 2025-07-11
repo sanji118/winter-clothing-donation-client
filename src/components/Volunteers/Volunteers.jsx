@@ -6,7 +6,7 @@ import 'swiper/css';
 import { Link } from "react-router-dom";
 import SectionSubHeading from "../ui/SectionSubHeading";
 import SectionHeading from "../ui/SectionHeading";
-import { getVolunteers } from "../../utils/useVolunteers";
+import { getVolunteers } from "../../services/volunteerService";
 import { LoadingState } from "../ui/LoadingState";
 import { ErrorState } from "../ui/ErrorState";
 

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import image from '../../../public/pageBanners/testimonial-banner.png'
-import { getTestimonials } from '../../utils/useTestimonials'
+import { getTestimonials } from '../../services/testimonialService'
 import PageBanner from '../../components/ui/PageBanner'
 import SectionSubHeading from '../../components/ui/SectionSubHeading'
 import SectionHeading from '../../components/ui/SectionHeading'

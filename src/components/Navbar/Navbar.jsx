@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../utils/useAuth";
+import useAuth from "../../services/authService";
 import { motion } from "framer-motion";
 import { FiMenu } from "react-icons/fi";
 import SidebarMenu from "./SidebarMenu";
