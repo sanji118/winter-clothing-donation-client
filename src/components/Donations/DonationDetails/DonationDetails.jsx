@@ -19,6 +19,7 @@ import PageBanner from "../../ui/PageBanner";
 import CommentsSection from "../../CommentSection";
 import SectionHeading from "../../ui/SectionHeading";
 import { useInView } from "react-intersection-observer";
+import OrganizerSection from "./OrganizerSection";
 
 const DonationDetails = () => {
   const controls = useAnimation();
@@ -165,6 +166,7 @@ const DonationDetails = () => {
 
         {/* Sidebar */}
         <div className="lg:col-span-2 space-y-8">
+          <OrganizerSection organizer={campaignData.organizer} />
           <RecentDonations donationData={donationData} />
           <CampaignDetailsSidebar campaignData={campaignData} />
           <ContactInfo contactInfo={campaignData.contactInfo} />

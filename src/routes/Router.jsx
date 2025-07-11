@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
                 element: <DonationDetails/>
             },
             {
-                path: '/donate',
+                path: '/donate/:slug',
                 element: <DonateNow />
             },
             {
