@@ -2,7 +2,7 @@ import ArticleContent from "./ArticlaContent";
 import AuthorBio from "./AuthorBio";
 import AuthorInfo from "./AuthorInfo";
 import BlogHeader from "./BlogHeader";
-import CommentsSection from "./CommentSection";
+import CommentsSection from "../../CommentSection";
 import FeaturedImage from "./FeaturedImage";
 import SocialStats from "./SocialStats";
 import TagsSection from "./TagsSection";
@@ -23,7 +23,12 @@ const BlogDetails = ({ blog }) => {
         <TagsSection blog={blog} />
         <SocialStats blog={blog} />
         <AuthorBio blog={blog} />
-        <CommentsSection blog={blog} />
+        <CommentsSection 
+          id={blog._id} 
+          comments={blog.comments} 
+          type="blog" 
+          postCommentFunction={postCommentToBlog} 
+        />
       </div>
     </div>
   )

@@ -4,8 +4,9 @@ import { FiMapPin } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const DonationCard = ({ donation }) => {
-  const { title, image, raised, goal, division, status } = donation;
+  const { title, image, raised, goal, division, status , slug} = donation;
   const progress = Math.min((raised / goal) * 100, 100);
+  
 
   return (
     <div className="bg-white p-5 rounded-2xl shadow-md max-w-sm mx-auto">
@@ -57,7 +58,7 @@ const DonationCard = ({ donation }) => {
       </div>
 
       
-      <Link to={'/donate'}><button className="mt-5 flex items-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-4 py-2 rounded-lg transition">
+      <Link to={`/campaigns/slug/${slug}`}><button className="mt-5 flex items-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-4 py-2 rounded-lg transition">
         Donate Now <ArrowRight size={16} />
       </button></Link>
     </div>

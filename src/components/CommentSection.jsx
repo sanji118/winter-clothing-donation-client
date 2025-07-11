@@ -1,62 +1,62 @@
 import { FaRegComment, FaUserCircle, FaSpinner, FaHeart, FaReply } from 'react-icons/fa';
 import { IoMdSend } from 'react-icons/io';
-import useAuth from '../../../utils/useAuth';
+import useAuth from '../utils/useAuth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postCommentToBlog } from '../../../utils/useBlogs';
 
-const CommentsSection = ({ blog }) => {
+const CommentsSection = ({ 
+    id, 
+    comments = [], 
+    type = 'blog', // or 'donation'
+    postCommentFunction 
+}) => {
     const { user } = useAuth();
     const queryClient = useQueryClient();
 
     const { mutate: addComment, isPending } = useMutation({
-        mutationFn: ({ id, newComment }) => postCommentToBlog({id, newComment}),
+        mutationFn: ({ id, newComment }) => postCommentFunction({ id, newComment }),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['blogs'] });
+            queryClient.invalidateQueries({ queryKey: [type === 'blog' ? 'blogs' : 'donations'] });
         }
     });
-    
 
     const handleComment = e => {
         e.preventDefault();
         const form = e.target;
         const comment = form.comment.value;
         const newComment = {
-            comment: comment,
+            text: comment,
             user: {
                 name: user?.displayName,
                 email: user?.email,
                 avatar: user?.photoURL 
             }
         }; 
-        addComment({ id: blog._id, newComment : newComment });
-        console.log( newComment);
+        addComment({ id, newComment });
         form.reset();
     };
-    
+
     return (
         <div className="pt-12 relative">
             {/* Floating comment header */}
             <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
                 <div className="bg-cyan-600 text-white px-6 py-2 rounded-full shadow-lg flex items-center">
                     <FaRegComment className="mr-2" />
-                    <span className="font-medium">{blog.comments.length} Comments</span>
+                    <span className="font-medium">{comments.length} Comments</span>
                 </div>
             </div>
-            
+
             {/* Comments list */}
             <div className="space-y-6 mb-8">
-                {blog.comments.length === 0 ? (
+                {comments.length === 0 ? (
                     <div className="text-center py-8 bg-gradient-to-br from-amber-50 to-white rounded-xl border border-amber-100">
                         <p className="text-amber-600 italic">No comments yet. Break the ice!</p>
                     </div>
                 ) : (
-                    blog.comments.map((comment, index) => (
+                    comments.map((comment, index) => (
                         <div key={index} className="group relative p-5 bg-white rounded-xl shadow-sm border border-amber-50 hover:border-amber-100 transition-all">
-                            {/* Decorative accent */}
                             <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-amber-300 to-amber-500 rounded-l-lg"></div>
-                            
                             <div className="flex items-start gap-4 pl-3">
-                                {comment.user.avatar ? (
+                                {comment.user?.avatar ? (
                                     <img 
                                         src={comment.user.avatar} 
                                         alt={comment.user.name} 
@@ -67,7 +67,7 @@ const CommentsSection = ({ blog }) => {
                                 )}
                                 <div className="flex-1">
                                     <div className="flex items-baseline flex-wrap gap-2">
-                                        <h4 className="font-medium text-gray-800">{comment.user.name}</h4>
+                                        <h4 className="font-medium text-gray-800">{comment.user?.name}</h4>
                                         <span className="text-xs text-amber-500 bg-amber-50 px-2 py-1 rounded-full">
                                             {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                         </span>
@@ -90,7 +90,7 @@ const CommentsSection = ({ blog }) => {
                     ))
                 )}
             </div>
-            
+
             {/* Comment form */}
             <form onSubmit={handleComment} className="bg-gradient-to-br from-amber-50 to-white p-6 rounded-xl shadow-sm border border-amber-100">
                 <h4 className="text-md font-medium text-amber-800 mb-4 flex items-center gap-2">

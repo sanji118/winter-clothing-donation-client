@@ -14,3 +14,8 @@ export const getCampaignBySlug = async (slug) => {
     const res = await axiosInstance.get(`/campaigns/slug/${slug}`);
     return res.data;
 }
+
+export const postCommentToCampaign = async ({id, newComment}) => {
+    const res = await axiosInstance.post(`campaigns/${id}/comments`, newComment);
+    return res.data;
+}
