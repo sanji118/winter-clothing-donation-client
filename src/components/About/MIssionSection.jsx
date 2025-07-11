@@ -1,55 +1,73 @@
-import { motion } from "framer-motion";
-import WavyText from "../../components/ui/WavyText";
+import { easeInOut, motion } from 'framer-motion';
+import { FaHandHoldingHeart, FaPeopleCarry, FaTruck, FaHandsHelping } from 'react-icons/fa';
+
+const missionData = [
+  {
+    icon: <FaHandHoldingHeart size={36} className="text-rose-600" />,
+    title: "Warmth with Compassion",
+    description: "Our mission is to collect and distribute winter clothing to those who need it most, spreading warmth and love across Bangladesh.",
+  },
+  {
+    icon: <FaPeopleCarry size={36} className="text-sky-600" />,
+    title: "Connecting Volunteers",
+    description: "We bridge the gap between donors and volunteers, ensuring donated clothes reach every corner of the country efficiently.",
+  },
+  {
+    icon: <FaTruck size={36} className="text-emerald-600" />,
+    title: "Efficient Delivery",
+    description: "We ensure that every item donated is tracked and delivered timely to families and individuals in need during the winter season.",
+  },
+  {
+    icon: <FaHandsHelping size={36} className="text-indigo-600" />,
+    title: "Trusted Giving",
+    description: "Our platform builds trust through transparency, allowing you to see where your donations go and how they make a difference.",
+  },
+];
 
 const MissionSection = () => {
   return (
-    <motion.section 
-      className="mb-24"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <h2 className="text-4xl font-bold text-center mb-12 text-blue-800">
-        <WavyText text="Our Mission" />
-      </h2>
-      
-      <div className="flex flex-col lg:flex-row gap-12 items-center">
-        <div className="lg:w-1/2">
-          <h3 className="text-2xl font-semibold mb-6 text-blue-700">Warming Hearts Across Bangladesh</h3>
-          <p className="text-lg mb-4 text-gray-700">
-            Cozy Kindness was founded in 2022 with a simple goal: to ensure no one suffers 
-            from the cold during winter months. We connect generous donors with vulnerable 
-            communities through our network of volunteers.
-          </p>
-          <p className="text-lg text-gray-700">
-            Each winter, thousands in rural Bangladesh face extreme hardship without proper 
-            warm clothing. Our platform makes it easy to donate winter garments and see the 
-            direct impact of your generosity.
-          </p>
-        </div>
-        
-        <div className="lg:w-1/2 relative">
-          <img 
-            src="/brush-stroke-bg.jpg" 
-            alt="Mission illustration" 
-            className="w-full rounded-lg shadow-xl"
-          />
-          <motion.img 
-            src="/blue-watercolor-bg.avif" 
-            alt="Winter coat donation"
-            className="absolute top-1/2 left-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2"
-            animate={{
-              y: [-10, 10, -10],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+    <section className="bg-blue-50 py-16 px-4 sm:px-8 lg:px-16">
+      <div className="max-w-6xl mx-auto text-center">
+        <motion.h2 
+          className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Our Mission
+        </motion.h2>
+        <motion.p 
+          className="text-gray-600 max-w-3xl mx-auto mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          We aim to bring warmth and dignity to every underprivileged person facing the bitter cold. Through connection, compassion, and community—we deliver hope.
+        </motion.p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {missionData.map((mission, index) => (
+            <motion.div
+              key={index}
+              className="bg-white rounded-xl shadow-md p-6 text-left hover:shadow-lg transition-all duration-300"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: 'tween', ease:easeInOut, duration: 0.3 }}
+              whileHover={{ y: -4 }}
+            >
+              <motion.div 
+              className="mb-4 inline-block"
+              initial={{rotateY: 0}}
+              whileHover={{rotateY: 180}}
+              transition={{duration: 0.3, ease: "easeInOut"}}
+              >{mission.icon}</motion.div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">{mission.title}</h3>
+              <p className="text-gray-600 text-sm">{mission.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

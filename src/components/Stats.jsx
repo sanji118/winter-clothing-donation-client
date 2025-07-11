@@ -47,7 +47,7 @@ const Stats = () => {
             {cards.map((card, index) => (
                 <motion.div
                 key={card.id}
-                className={`absolute w-full max-w-sm rounded-2xl p-8 shadow-md ${card.color} ${card.textColor}`}
+                className={`border-b-4 absolute w-full max-w-sm rounded-2xl p-8 shadow-md ${card.color} ${card.textColor}`}
                 style={{ 
                     zIndex: index + 1,
                     height: '220px',

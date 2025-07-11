@@ -12,7 +12,7 @@ const TeamSection = ({ department, members }) => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {members.map((member) => (
+        {members?.map((member) => (
           <TeamMemberCard key={member._id} member={member} />
         ))}
       </div>

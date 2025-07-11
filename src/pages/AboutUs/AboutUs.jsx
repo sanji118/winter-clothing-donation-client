@@ -3,6 +3,8 @@ import MissionSection from "../../components/About/MIssionSection";
 import image from '../../../public/pageBanners/about-page-banner.jpg';
 import PageBanner from "../../components/ui/PageBanner";
 import Stats from "../../components/Stats";
+import TestimonialSection from "../../components/TestimonialSection";
+import WorkProcess from "../../components/About/WorkProcess";
 
 
 const AboutUs = () => {
@@ -13,9 +15,13 @@ const AboutUs = () => {
       subtitle="Bringing Warmth to Those in Need"
       image={image}
       />
-      <div className="p-5 md:p-20">
+      <div>
         <MissionSection/>
-        <Stats/>
+        <div className="p-5 md:p-20">
+          <Stats/>
+          <WorkProcess/>
+        </div>
+        <TestimonialSection/>
       </div>
     </div>
   );
