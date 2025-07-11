@@ -3,7 +3,7 @@ import Mainlayout from "../layouts/Mainlayout";
 import NotFoundPage from "../NotFoundPage";
 import AuthPage from "../auth/AuthPage";
 import HomePage from '../pages/HomePage/HomePage';
-import DonationCompaigns from "../pages/DonationCompaigns/DonationCompaigns";
+import DonationCampaigns from "../pages/DonationCampaigns/DonationCampaigns";
 import Dashboard from "../user/Dashboard";
 import HowToHelp from "../pages/HowToHelp/HowToHelp";
 import Profile from "../auth/Profile";
@@ -18,6 +18,7 @@ import Faq from "../pages/Faq/Faq";
 import BecomeVolunteer from "../pages/BecomeVolunteer/BecomeVolunteer";
 import VolunteerPage from "../pages/VolunteerPage/VolunteerPage";
 import BlogPage from "../pages/BlogPage/BlogPage";
+import DonationDetails from "../components/Donations/DonationDetails";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +40,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/campaigns',
-                element: <DonationCompaigns />
+                element: <DonationCampaigns />
+            },
+            {
+                path: '/campaigns/slug/:slug',
+                element: <DonationDetails/>
             },
             {
                 path: '/donate',

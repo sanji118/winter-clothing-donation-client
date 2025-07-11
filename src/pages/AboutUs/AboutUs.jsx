@@ -19,9 +19,11 @@ const AboutUs = () => {
         <MissionSection/>
         <div className="p-5 md:p-20">
           <Stats/>
-          <WorkProcess/>
+          
         </div>
         <TestimonialSection/>
+        <div className="p-5 md:p-20"><WorkProcess/></div>
+        
       </div>
     </div>
   );

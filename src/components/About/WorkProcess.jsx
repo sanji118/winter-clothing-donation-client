@@ -71,9 +71,8 @@ const WorkProcess = () => {
                             key={data.id}
                             variants={item}
                             whileHover={{ y: -10 }}
-                            className={`p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center relative overflow-hidden ${data.color}`}
+                            className={`p-8 rounded-xl shadow-lg hover:shadow-xl hover:grayscale-70 transition-all duration-300 flex flex-col items-center text-center relative overflow-hidden ${data.color}`}
                         >
-                            {/* Heart background pattern - more subtle */}
                             <div 
                                 className="absolute inset-0 opacity-10"
                                 style={{

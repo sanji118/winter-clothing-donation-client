@@ -6,6 +6,11 @@ export const getCampaigns = async () =>{
 }
 
 export const getCampaignById = async (id) => {
-    const res = await axiosInstance.get(`/campaigns/${id}`);
+    const res = await axiosInstance.get(`/campaigns/id/${id}`);
+    return res.data;
+}
+
+export const getCampaignBySlug = async (slug) => {
+    const res = await axiosInstance.get(`/campaigns/slug/${slug}`);
     return res.data;
 }
