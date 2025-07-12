@@ -1,16 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom"
-import { getCampaignBySlug } from "../../services/campaignService";
-
+import React from 'react'
+import DonationForm from '../../components/Donations/DonationForm'
+import { getCampaigns } from '../../services/campaignService';
 
 const DonateNow = () => {
-  const {slug} = useParams();
-  const { data = donationData = [], isLoading, isError}  = useQuery({
+  const { data: campaigns = [], isLoading, isError } = useQuery({
     queryKey: ['campaigns'],
-    queryFn: getCampaignBySlug(slug)
-  })
+    queryFn: getCampaigns,
+  });
   return (
-    <div>DonateNow</div>
+    <div>DonateNow
+
+      <DonationForm campaigns = { campaigns } />
+    </div>
   )
 }
 
