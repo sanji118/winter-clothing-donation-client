@@ -1,57 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { initiateSSLPayment, submitBankDonation } from '../../services/paymentService';
+import { initiateSSLPayment } from '../../services/paymentService';
 import { validateEmail, validatePhone } from '../../utils/validators';
-import { FormInput, FormSelect, FormRadio, FormCheckbox } from '../ui/FormElements';
+import { FormInput, FormSelect, FormCheckbox } from '../ui/FormElements';
 import { Button } from '../ui/Button';
-import { PaymentMethodSelector } from './PaymentMethodSelector';
-import { BankDetails } from './BankDetails';
 import useAuth from '../../services/authService';
 
-
-
-export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTitle, defaultCampaignSlug}) => {
-  const { user } = useAuth();
-  const [selectedCampaign, setSelectedCampaign] = useState(defaultCampaignId || '');
+export const DonationForm = ({ 
+  campaigns, 
+  defaultCampaignId,
+  defaultCampaignSlug,
+  defaultCampaignTitle
+}) => {
   
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || '',
     phone: user?.phone || '',
     amount: '',
-    campaignSlug: '',
-    paymentMethod: 'ssl',
+    campaignSlug: defaultCampaignSlug || '',
     isAnonymous: false,
     message: '',
     agreeToTerms: false
   });
-
+  
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [activeCampaign, setActiveCampaign] = useState(() => {
-    return campaigns.find(c => c._id === defaultCampaignId || c.slug === defaultCampaignSlug ) || null;
-  });
+  const [activeCampaign, setActiveCampaign] = useState(null);
+  const [hasChangedCampaign, setHasChangedCampaign] = useState(false);
 
+  // Initialize with default campaign
   useEffect(() => {
-    if (defaultCampaignSlug) {
-      setFormData(prev => ({
-        ...prev,
-        campaignSlug: defaultCampaignSlug
-      }));
-
-      const selected = campaigns.find(c => c.slug === defaultCampaignSlug);
-      setActiveCampaign(selected);
+    if (defaultCampaignSlug && campaigns.length > 0 && !hasChangedCampaign) {
+      const selectedCampaign = campaigns.find(c => 
+        c._id === defaultCampaignId || 
+        c.slug === defaultCampaignSlug
+      );
+      
+      if (selectedCampaign) {
+        setActiveCampaign(selectedCampaign);
+        setFormData(prev => ({
+          ...prev,
+          campaignSlug: selectedCampaign.slug
+        }));
+      }
     }
-  }, [defaultCampaignSlug, campaigns]);
-  
-  useEffect(() => {
-    if (campaigns.length === 1) {
-      setFormData(prev => ({
-        ...prev,
-        campaignSlug: campaigns[0].slug
-      }));
-      setActiveCampaign(campaigns[0]);
-    }
-  }, [campaigns]);
+  }, [campaigns, defaultCampaignId, defaultCampaignSlug, hasChangedCampaign]);
 
   
   useEffect(() => {
@@ -63,11 +57,16 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    
+    
+    if (name === 'campaignSlug' && !hasChangedCampaign) {
+      setHasChangedCampaign(true);
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-    
     
     if (errors[name]) {
       setErrors(prev => ({
@@ -86,7 +85,8 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
     if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
     else if (!validatePhone(formData.phone)) newErrors.phone = 'Invalid phone number';
     if (!formData.amount) newErrors.amount = 'Amount is required';
-    else if (isNaN(formData.amount) || Number(formData.amount) <= 0) newErrors.amount = 'Invalid amount';
+    else if (isNaN(formData.amount)) newErrors.amount = 'Must be a number';
+    else if (Number(formData.amount) <= 0) newErrors.amount = 'Must be greater than 0';
     if (!formData.campaignSlug) newErrors.campaignSlug = 'Please select a campaign';
     if (!formData.agreeToTerms) newErrors.agreeToTerms = 'You must agree to the terms';
     
@@ -102,52 +102,52 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
     setIsSubmitting(true);
     
     try {
-      if (formData.paymentMethod === 'ssl') {
-        const paymentData = {
-          amount: formData.amount,
-          email: formData.email,
-          name: formData.name,
-          phone: formData.phone,
-          campaignSlug: formData.campaignSlug,
-          userId: user?._id || 'guest'
-        };
-        
-        const response = await initiateSSLPayment(paymentData);
-        window.location.href = response.url;
-        console.log(response.url);
-      } else {
-        const donationData = {
-          ...formData,
-          userId: user?.email || null,
-          paymentStatus: 'pending',
-          paymentMethod: 'bank'
-        };
-        
-        await submitBankDonation(donationData);
-      }
+      const donationData = {
+        ...formData,
+        amount: Number(formData.amount),
+        userId: user?._id || null,
+        campaignId: activeCampaign?._id,
+        campaignTitle: activeCampaign?.title,
+        paymentMethod: 'ssl'
+      };
+
+      const response = await initiateSSLPayment(donationData);
+      window.location.href = response.url;
     } catch (error) {
       console.error('Donation submission error:', error);
       setErrors({
-        submit: error.response?.data?.message || 'Failed to process donation. Please try again.'
+        submit: error.response?.data?.message || 'Payment processing failed. Please try again.'
       });
     } finally {
       setIsSubmitting(false);
     }
-
-    
   };
 
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6 md:p-8">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Make a Donation</h2>
-      
-      {activeCampaign && (
-        <div className="mb-6 p-4 bg-blue-50 rounded-lg">
-          <h3 className="font-semibold text-lg text-blue-800">{activeCampaign.title}</h3>
-          <p className="text-gray-600 mt-1">{activeCampaign.shortDescription}</p>
+      {!hasChangedCampaign && defaultCampaignTitle && (
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">
+            Donate to: {defaultCampaignTitle}
+          </h2>
+          {activeCampaign?.description && (
+            <p className="text-gray-600 mt-2 text-sm">{activeCampaign.description}</p>
+          )}
         </div>
       )}
+
       
+      {hasChangedCampaign && activeCampaign && (
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">
+            Donate to: {activeCampaign.title}
+          </h2>
+          {activeCampaign.description && (
+            <p className="text-gray-600 mt-2 text-sm">{activeCampaign.description}</p>
+          )}
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormInput
@@ -186,7 +186,8 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
             onChange={handleChange}
             error={errors.amount}
             required
-            min="10"
+            min="1"
+            step="any"
           />
           
           <div className="md:col-span-2">
@@ -198,7 +199,7 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
               error={errors.campaignSlug}
               required
               options={[
-                { value: '', label: '-- Select a Campaign --' },
+                { value: '', label: '-- Select a Campaign --', disabled: true },
                 ...campaigns.map(campaign => ({
                   value: campaign.slug,
                   label: campaign.title
@@ -206,15 +207,6 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
               ]}
             />
           </div>
-        </div>
-        
-        <div className="space-y-4">
-          <PaymentMethodSelector
-            value={formData.paymentMethod}
-            onChange={handleChange}
-          />
-          
-          {formData.paymentMethod === 'bank' && <BankDetails />}
         </div>
         
         <div className="space-y-4">
@@ -232,6 +224,7 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
             onChange={handleChange}
             as="textarea"
             rows={3}
+            placeholder="Add a personal message..."
           />
         </div>
         
@@ -244,8 +237,8 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
             required
             label={
               <span>
-                I agree to the <a href="/terms" className="text-blue-600 hover:underline">Terms and Conditions</a> and 
-                <a href="/privacy" className="text-blue-600 hover:underline"> Privacy Policy</a>
+                I agree to the <a href="/terms" className="text-blue-600 hover:underline">Terms</a> and {' '}
+                <a href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</a>
               </span>
             }
           />
@@ -259,9 +252,17 @@ export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTi
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full md:w-auto"
+            className="w-full md:w-auto bg-blue-600 hover:bg-blue-700"
           >
-            {isSubmitting ? 'Processing...' : 'Donate Now'}
+            {isSubmitting ? (
+              <>
+                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+              </>
+            ) : 'Proceed to Payment'}
           </Button>
         </div>
       </form>

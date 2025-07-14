@@ -15,7 +15,7 @@ const DonateNow = () => {
   const selectedCampaignSlug = state?.selectedCampaignSlug;
   const selectedCampaignTitle = state?.selectedCampaignTitle;
   const organizer = state?.organizer;
-
+  console.log(selectedCampaignSlug, selectedCampaignTitle)
 
   const { data: campaigns = [], isLoading, isError } = useQuery({
     queryKey: ['campaigns'],
