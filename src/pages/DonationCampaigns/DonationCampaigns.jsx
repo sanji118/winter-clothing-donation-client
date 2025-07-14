@@ -80,7 +80,7 @@ const DonationCampaigns = () => {
                     to={`/campaigns/slug/${campaign.slug}`}
                     className="flex items-center justify-center w-full py-3 bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold rounded-lg transition-all duration-300"
                   >
-                    <FaDonate className="mr-2" /> Donate Now
+                    <FaDonate className="mr-2" /> View Details
                   </Link>
                 </div>
               </div>

@@ -68,7 +68,14 @@ const DonationDetails = () => {
   const progress = Math.min((campaignData.raised / campaignData.goal) * 100, 100);
 
   const handleDonateNow = () => {
-    navigate(`/donate/${slug}`);
+    navigate('/donate', {
+      state: {
+        selectedCampaignId: campaignData._id,
+        selectedCampaignTitle: campaignData.title,
+        selectedCampaignSlug: campaignData.slug,
+        organizer: campaignData.organizer
+      }
+    });
   };
 
   // Animation variants

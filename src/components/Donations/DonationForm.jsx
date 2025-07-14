@@ -7,8 +7,12 @@ import { PaymentMethodSelector } from './PaymentMethodSelector';
 import { BankDetails } from './BankDetails';
 import useAuth from '../../services/authService';
 
-export const DonationForm = ({ campaigns }) => {
+
+
+export const DonationForm = ({ campaigns , defaultCampaignId , defaultCampaignTitle, defaultCampaignSlug}) => {
   const { user } = useAuth();
+  const [selectedCampaign, setSelectedCampaign] = useState(defaultCampaignId || '');
+  
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || '',
@@ -23,8 +27,21 @@ export const DonationForm = ({ campaigns }) => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [activeCampaign, setActiveCampaign] = useState(null);
+  const [activeCampaign, setActiveCampaign] = useState(() => {
+    return campaigns.find(c => c._id === defaultCampaignId || c.slug === defaultCampaignSlug ) || null;
+  });
 
+  useEffect(() => {
+    if (defaultCampaignSlug) {
+      setFormData(prev => ({
+        ...prev,
+        campaignSlug: defaultCampaignSlug
+      }));
+
+      const selected = campaigns.find(c => c.slug === defaultCampaignSlug);
+      setActiveCampaign(selected);
+    }
+  }, [defaultCampaignSlug, campaigns]);
   
   useEffect(() => {
     if (campaigns.length === 1) {
@@ -86,7 +103,6 @@ export const DonationForm = ({ campaigns }) => {
     
     try {
       if (formData.paymentMethod === 'ssl') {
-        // Process SSL payment
         const paymentData = {
           amount: formData.amount,
           email: formData.email,
@@ -100,7 +116,6 @@ export const DonationForm = ({ campaigns }) => {
         window.location.href = response.url;
         console.log(response.url);
       } else {
-        // Process bank donation
         const donationData = {
           ...formData,
           userId: user?.email || null,
