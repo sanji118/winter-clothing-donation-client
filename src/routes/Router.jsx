@@ -19,6 +19,7 @@ import BecomeVolunteer from "../pages/BecomeVolunteer/BecomeVolunteer";
 import VolunteerPage from "../pages/VolunteerPage/VolunteerPage";
 import BlogPage from "../pages/BlogPage/BlogPage";
 import DonationDetails from "../components/Donations/DonationDetails/DonationDetails";
+import PaymentSuccessPage from "../components/Donations/PaymentSuccessPage";
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path: '/donate',
                 element: <DonateNow />
+            },
+            {
+                path: '/payment/payment-success',
+                element: <PaymentSuccessPage/>
             },
             {
                 path: '/gallery',
