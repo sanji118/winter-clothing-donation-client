@@ -15,7 +15,6 @@ const DonateNow = () => {
   const selectedCampaignSlug = state?.selectedCampaignSlug;
   const selectedCampaignTitle = state?.selectedCampaignTitle;
   const organizer = state?.organizer;
-  console.log(selectedCampaignSlug, selectedCampaignTitle)
 
   const { data: campaigns = [], isLoading, isError } = useQuery({
     queryKey: ['campaigns'],
@@ -26,7 +25,7 @@ const DonateNow = () => {
   if (isLoading) return <LoadingState name={'Donation Form'} />;
   if (isError) return <ErrorState  name={'Donation Form'} />;
 
-  console.log(organizer);
+  
   return (
     <div className='p-5 md:p-20 bg-cyan-50'>
       <div className='w-fit mx-auto'>

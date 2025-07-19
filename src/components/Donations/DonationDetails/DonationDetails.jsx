@@ -151,7 +151,8 @@ const DonationDetails = () => {
             <p className="text-lg leading-relaxed">{campaignData.description}</p>
           </motion.div>
           
-          <DonationProgress 
+          <DonationProgress
+           campaign={campaignData} 
             progress={progress}
             raised={campaignData.raised}
             goal={campaignData.goal}

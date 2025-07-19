@@ -13,10 +13,12 @@ export const DonationForm = ({
 }) => {
   
   const { user } = useAuth();
+  console.log(user?.uid)
   const [formData, setFormData] = useState({
-    name: user?.name || '',
+    name: user?.displayName || '',
     email: user?.email || '',
-    phone: user?.phone || '',
+    phone: '',
+    userId: user?.uid || null,
     amount: '',
     campaignSlug: defaultCampaignSlug || '',
     isAnonymous: false,
@@ -47,7 +49,7 @@ export const DonationForm = ({
     }
   }, [campaigns, defaultCampaignId, defaultCampaignSlug, hasChangedCampaign]);
 
-  
+  // Update active campaign when campaignSlug changes
   useEffect(() => {
     if (formData.campaignSlug) {
       const selected = campaigns.find(c => c.slug === formData.campaignSlug);
@@ -105,10 +107,14 @@ export const DonationForm = ({
       const donationData = {
         ...formData,
         amount: Number(formData.amount),
-        userId: user?._id || null,
+        name: formData.isAnonymous? 'Anonymous Donor' : formData.name,
+        email: formData.isAnonymous? null : formData.email,
+        phone: formData.isAnonymous ? null : formData.phone,
+        userId: formData.userId,
+        campaignSlug: formData.campaignSlug,
         campaignId: activeCampaign?._id,
         campaignTitle: activeCampaign?.title,
-        paymentMethod: 'ssl'
+        isAnonymous: formData.isAnonymous
       };
 
       const response = await initiateSSLPayment(donationData);
@@ -121,6 +127,8 @@ export const DonationForm = ({
     } finally {
       setIsSubmitting(false);
     }
+
+    console.log(formData.name, formData.phone, formData.email , formData.campaignSlug);
   };
 
   return (

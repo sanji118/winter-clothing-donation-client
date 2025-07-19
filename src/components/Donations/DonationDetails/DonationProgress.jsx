@@ -3,7 +3,7 @@ import { FaHeart, FaArrowRight } from "react-icons/fa";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-const DonationProgress = ({ progress, raised, goal, onDonateNow }) => {
+const DonationProgress = ({ campaign, progress, raised, goal, onDonateNow }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.1,
@@ -79,6 +79,20 @@ const DonationProgress = ({ progress, raised, goal, onDonateNow }) => {
     }
   };
 
+  const disabledButtonVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 0.7,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+        delay: 0.4
+      }
+    }
+  };
+
   const pulseVariants = {
     visible: {
       scale: [1, 1.1, 1],
@@ -89,6 +103,8 @@ const DonationProgress = ({ progress, raised, goal, onDonateNow }) => {
       }
     }
   };
+
+  const isActive = campaign.status === 'Active';
 
   return (
     <motion.div
@@ -143,15 +159,27 @@ const DonationProgress = ({ progress, raised, goal, onDonateNow }) => {
       </div>
       
       <motion.button
-        variants={buttonVariants}
-        whileHover="hover"
-        whileTap="tap"
-        onClick={onDonateNow}
-        className="px-6 py-3 bg-gradient-to-r from-orange-400 to-pink-400 text-white rounded-lg font-bold shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2"
+        variants={isActive ? buttonVariants : disabledButtonVariants}
+        whileHover={isActive ? "hover" : {}}
+        whileTap={isActive ? "tap" : {}}
+        onClick={isActive ? onDonateNow : null}
+        disabled={!isActive}
+        className={`px-6 py-3 rounded-lg font-bold shadow-md transition-all duration-300 flex items-center gap-2 ${
+          isActive 
+            ? "bg-gradient-to-r from-orange-400 to-pink-400 text-white hover:shadow-lg cursor-pointer"
+            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+        }`}  
       >
-        Donate Now <motion.span animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
-          <FaArrowRight />
-        </motion.span>
+        {isActive ? (
+          <div>
+            Donate Now 
+            <motion.span animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+              <FaArrowRight />
+            </motion.span>
+          </div>
+        ) : (
+          <div>{campaign.status}</div>
+        )}
       </motion.button>
     </motion.div>
   );

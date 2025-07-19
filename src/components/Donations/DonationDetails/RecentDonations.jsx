@@ -93,7 +93,7 @@ const RecentDonations = ({ donationData }) => {
 
       {donationData.length > 0 ? (
         <ul className="space-y-3 divide-y divide-yellow-100">
-          {donationData.slice(0, 5).map((donation, index) => (
+          {donationData?.slice(0, 5).map((donation, index) => (
             <motion.li
               key={donation.transactionId}
               variants={itemVariants}
@@ -108,7 +108,7 @@ const RecentDonations = ({ donationData }) => {
                   <FaHeart className="text-pink-400 text-xs" />
                 </motion.div>
                 <span className="font-medium text-gray-800">
-                  {donation.userId === 'anonymous' ? 'Anonymous' : donation.userId.split('@')[0]}
+                  {donation.name}
                 </span>
               </div>
               <motion.span
