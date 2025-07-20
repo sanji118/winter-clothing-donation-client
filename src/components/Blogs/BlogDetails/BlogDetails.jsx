@@ -6,6 +6,7 @@ import CommentsSection from "../../CommentSection";
 import FeaturedImage from "./FeaturedImage";
 import SocialStats from "./SocialStats";
 import TagsSection from "./TagsSection";
+import { postCommentToBlog } from "../../../services/blogService";
 
 
 const BlogDetails = ({ blog }) => {

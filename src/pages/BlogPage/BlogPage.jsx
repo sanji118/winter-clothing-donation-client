@@ -11,7 +11,6 @@ import PageBanner from '../../components/ui/PageBanner';
 
 const BlogPage = () => {
   const {id} = useParams();
-  const navigate = useNavigate();
   const { data: blogs = [], isLoading, isError } = useQuery({
     queryKey: ['blogs'],
     queryFn: getBlogs,
