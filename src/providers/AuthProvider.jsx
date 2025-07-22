@@ -13,6 +13,7 @@ const googleProvider =  new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [userRole, setUserRole] = useState(null);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -52,6 +53,29 @@ const AuthProvider = ({children}) => {
     return signOut(auth);
   }
 
+  const getMe = async () => {
+    try {
+      const { data } = await axiosInstance.get('/auth/me');
+      setUserRole(data.user.role);
+      return data.user;
+
+    } catch (error) {
+      console.log(error);
+      setUserRole(null);
+      return null;
+    }
+  }
+
+  const checkRole = async (role) => {
+    try {
+      await axiosInstance.get(`/auth/${role}/dashboard`, { withCredentials: true });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+
   useEffect(()=>{
     const unsubscriber = onAuthStateChanged(auth, async (currentUser) =>{
       setUser(currentUser);
@@ -62,8 +86,8 @@ const AuthProvider = ({children}) => {
             const {data} = await axiosInstance.post('/jwt', {
               email : currentUser.email
             });
-            saveUser(currentUser);
-            console.log('JWT set in cookie: ', data.token);
+            await saveUser(currentUser);
+            await getMe();
             setLoading(false);
           } catch (error) {
             console.log('jwt error: ', error);
@@ -71,6 +95,7 @@ const AuthProvider = ({children}) => {
           }
       }else{
         await axiosInstance.post('/logout');
+        setUserRole(null);
         setLoading(false);
       }
     });
@@ -79,7 +104,7 @@ const AuthProvider = ({children}) => {
   }, [])
 
   const authInfo = {
-    user, loading, createUser, signIn, signInWithGoogle,updateUserProfile, signOutUser
+    user, loading, createUser, signIn, signInWithGoogle,updateUserProfile, signOutUser,getMe, userRole, checkRole
   }
 
   return(

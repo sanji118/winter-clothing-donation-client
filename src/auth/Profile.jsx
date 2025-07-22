@@ -16,7 +16,7 @@ import { ErrorState } from '../components/ui/ErrorState';
 import { Link } from 'react-router-dom';
 import { generateDonationReceipt } from '../utils/Receipt';
 
-const Profile = () => {
+const Profile = ({userRole}) => {
   const { user } = useAuth();
   const [generatingReceipt, setGeneratingReceipt] = useState(null);
   
