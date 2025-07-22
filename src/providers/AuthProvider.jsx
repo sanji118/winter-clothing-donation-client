@@ -34,6 +34,19 @@ const AuthProvider = ({children}) => {
         photoURL: photoURL,
     })
   }
+
+  const saveUser = async (user) => {
+    if(!user?.email) return;
+
+    const userData = {
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL,
+      phone: user.phoneNumber
+    }
+
+    await axiosInstance.post('/users', userData);
+  }
   const signOutUser = () =>{
     setLoading(true);
     return signOut(auth);
@@ -49,6 +62,7 @@ const AuthProvider = ({children}) => {
             const {data} = await axiosInstance.post('/jwt', {
               email : currentUser.email
             });
+            saveUser(currentUser);
             console.log('JWT set in cookie: ', data.token);
             setLoading(false);
           } catch (error) {

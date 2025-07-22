@@ -4,7 +4,6 @@ import NotFoundPage from "../pages/NotFound/NotFoundPage";
 import AuthPage from "../auth/AuthPage";
 import HomePage from '../pages/HomePage/HomePage';
 import DonationCampaigns from "../pages/DonationCampaigns/DonationCampaigns";
-import Dashboard from "../user/Dashboard";
 import HowToHelp from "../pages/HowToHelp/HowToHelp";
 import Profile from "../auth/Profile";
 import PrivateRouter from "../providers/PrivateRouter";
@@ -20,6 +19,7 @@ import VolunteerPage from "../pages/VolunteerPage/VolunteerPage";
 import BlogPage from "../pages/BlogPage/BlogPage";
 import DonationDetails from "../components/Donations/DonationDetails/DonationDetails";
 import PaymentSuccessPage from "../components/Donations/PaymentSuccessPage";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
     {
@@ -49,11 +49,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/donate',
-                element: <DonateNow />
+                element: <PrivateRouter><DonateNow /></PrivateRouter>
             },
             {
                 path: '/payment/payment-success',
-                element: <PaymentSuccessPage/>
+                element: <PrivateRouter><PaymentSuccessPage/></PrivateRouter>
             },
             {
                 path: '/gallery',
@@ -85,11 +85,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/become-volunteer',
-                element: <BecomeVolunteer />
+                element: <PrivateRouter><BecomeVolunteer /></PrivateRouter>
             },
             {
                 path: '/volunteer',
-                element: <VolunteerPage />
+                element: <PrivateRouter><VolunteerPage /></PrivateRouter> 
             },
             {
                 path: '/dashboard',
@@ -97,7 +97,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile />
+                element: <PrivateRouter><Profile /></PrivateRouter>
             },
         ]
     },
