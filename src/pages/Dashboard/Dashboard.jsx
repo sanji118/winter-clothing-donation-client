@@ -1,17 +1,23 @@
-
-import useAuth from '../../services/authService'
+import { LoadingState } from '../../components/ui/LoadingState';
+import Unauthorized from '../../components/ui/Unauthorized';
+import useAuth from '../../services/authService';
 import AdminDashboard from './roles/AdminDashboard';
+import PartnerDashboard from './roles/PartnerDashboard';
 import UserDashboard from './roles/UserDashboard';
 import VolunteerDashboard from './roles/VolunteerDashboard';
-import PartnerDashboard from './roles/PartnerDashboard';
 
 const Dashboard = () => {
-  const {userRole} = useAuth();
+  const { userRole, loading } = useAuth();
   
-  if(userRole === 'admin') return <AdminDashboard />
-  if (userRole === 'partner') return <PartnerDashboard />;
-  if (userRole === 'volunteer') return <VolunteerDashboard />;
-  if (userRole === 'user') return <UserDashboard />;
+  if (loading) return <LoadingState name={''} />;
+  
+  switch(userRole) {
+    case 'admin': return <AdminDashboard />;
+    case 'partner': return <PartnerDashboard />;
+    case 'volunteer': return <VolunteerDashboard />;
+    case 'user': return <UserDashboard />;
+    default: return <Unauthorized />;
+  }
 }
 
-export default Dashboard
+export default Dashboard;
