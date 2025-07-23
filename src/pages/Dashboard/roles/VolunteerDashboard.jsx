@@ -1,9 +1,31 @@
-import React from 'react'
+import { useState } from 'react';
+import VolunteerTasksTab from '../../../components/Dashboard/tabs/volunteer/VolunteerTasksTab';
+import VolunteerEventsTab from '../../../components/Dashboard/tabs/volunteer/VolunteerEventsTab';
+import { DashboardSidebar } from '../../../components/Dashboard/DashboardSidebar';
 
 const VolunteerDashboard = () => {
-  return (
-    <div>VolunteerDashboard</div>
-  )
-}
+  const [selectedSection, setSelectedSection] = useState('tasks');
 
-export default VolunteerDashboard
+  const renderSection = () => {
+    switch (selectedSection) {
+      case 'tasks': return <VolunteerTasksTab />;
+      case 'events': return <VolunteerEventsTab />;
+      default: return <div>Volunteer Overview</div>;
+    }
+  };
+
+  return (
+    <div className="flex h-screen bg-gray-100">
+      <DashboardSidebar 
+        selected={selectedSection} 
+        onSelect={setSelectedSection} 
+        role="volunteer" 
+      />
+      <main className="flex-1 p-6 overflow-y-auto">
+        {renderSection()}
+      </main>
+    </div>
+  );
+};
+
+export default VolunteerDashboard;
