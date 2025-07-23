@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { Flip, toast } from "react-toastify";
 
 const LoginForm = ({ toggleAuth }) =>{
-  const {signIn} = useAuth();
+  const {signIn, user} = useAuth();
   const navigate = useNavigate();
 
-
+  
   const handleLogin = e =>{
     e.preventDefault();
     const form = e.target;
@@ -30,6 +30,7 @@ const LoginForm = ({ toggleAuth }) =>{
     .catch(error =>{
       const errorMessage = error.message;
       console.log(errorMessage);
+      toast.warn('Sign Up please')
     })
   }
   return(

@@ -10,7 +10,7 @@ export const getDonationById = async (id) => {
   return res.data;
 };
 
-export const getDonationsBySlug = async (slug) => {
+export const getDonationBySlug = async (slug) => {
   const res = await axiosInstance.get(`/donations/slug/${slug}`);
   return res.data;
 };

@@ -1,6 +1,6 @@
 import axiosInstance from "../hooks/axiosInstance";
 
-export const getFaqs = async () => {
+export const getFAQs = async () => {
   const res = await axiosInstance.get("/faqs");
   return res.data;
 };

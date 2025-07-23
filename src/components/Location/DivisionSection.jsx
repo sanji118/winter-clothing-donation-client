@@ -42,7 +42,7 @@ export const DivisionSection = ({ division, campaigns }) => (
 
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {campaigns.map((campaign, index) => (
-        <Link to={'/campaigns'}><CampaignCard 
+        <Link to={'/campaigns'} key={index}><CampaignCard 
           key={campaign.title} 
           campaign={campaign} 
           index={index} 

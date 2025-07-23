@@ -8,7 +8,7 @@ const PrivateRouter = ({children}) => {
     if(loading){return <span className="loading loading-spinner loading-md"></span>}
 
     if(!user){
-        return <Navigate to={'/auth/login'} />
+        return <Navigate to={'/auth'} />
     }
   return children;
 }
