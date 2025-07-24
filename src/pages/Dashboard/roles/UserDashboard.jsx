@@ -11,7 +11,7 @@ const UserDashboard = () => {
     switch (selectedSection) {
       case 'profile': return <Profile />;
       case 'donations': return <UserDonationsTab />;
-      default: return <OverviewTab role='user'/>;
+      default: return <OverviewTab/>;
     }
   };
 

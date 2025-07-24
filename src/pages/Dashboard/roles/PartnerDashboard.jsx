@@ -14,7 +14,7 @@ const PartnerDashboard = () => {
       case 'campaigns': return <CampaignsTab />;
       case 'my-campaigns': return <PartnerCampaignsTab />;
       case 'donations': return <DonationTab />;
-      default: return <OverviewTab role='partner'/>;
+      default: return <OverviewTab/>;
     }
   };
 

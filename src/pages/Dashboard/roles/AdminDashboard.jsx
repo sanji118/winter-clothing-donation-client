@@ -28,7 +28,7 @@ const AdminDashboard = () => {
       case 'gallery': return <GalleryTab />;
       case 'team': return <TeamTab />;
       case 'faq': return <FaqTab />;
-      default: return <OverviewTab role='admin'/>;
+      default: return <OverviewTab/>;
     }
   };
   

@@ -11,7 +11,7 @@ const VolunteerDashboard = () => {
     switch (selectedSection) {
       case 'tasks': return <VolunteerTasksTab />;
       case 'events': return <VolunteerEventsTab />;
-      default: return <OverviewTab role='volunteer'/>;
+      default: return <OverviewTab/>;
     }
   };
 
