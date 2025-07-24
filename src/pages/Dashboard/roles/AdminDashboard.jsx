@@ -1,21 +1,23 @@
 import { useState } from 'react';
-import CampaignsTab from '../../../components/Dashboard/tabs/CampaignsTab';
-import DonationTab from '../../../components/Dashboard/tabs/DonationTab';
+import DonationTab from '../../../components/Dashboard/tabs/admin/DonationTab';
 import UsersTab from '../../../components/Dashboard/tabs/admin/UsersTab';
-import BlogsTab from '../../../components/Dashboard/tabs/BlogsTab';
-import VolunteersTab from '../../../components/Dashboard/tabs/VolunteersTab';
-import TestimonialsTab from '../../../components/Dashboard/tabs/TestimonialsTab';
+import BlogsTab from '../../../components/Dashboard/tabs/admin/BlogsTab';
+import VolunteersTab from '../../../components/Dashboard/tabs/admin/VolunteersTab';
+import TestimonialsTab from '../../../components/Dashboard/tabs/admin/TestimonialsTab';
 import AnnouncementsTab from '../../../components/Dashboard/tabs/admin/AnnouncementsTab';
 import GalleryTab from '../../../components/Dashboard/tabs/admin/GalleryTab';
 import TeamTab from '../../../components/Dashboard/tabs/admin/TeamTab';
 import FaqTab from '../../../components/Dashboard/tabs/admin/FaqTab';
 import { DashboardSidebar } from '../../../components/Dashboard/DashboardSidebar';
+import CampaignsTab from '../../../components/Dashboard/tabs/admin/CampaignsTab';
+import OverviewTab from '../../../components/Dashboard/tabs/OverviewTab';
 
 const AdminDashboard = () => {
   const [selectedSection, setSelectedSection] = useState('dashboard');
 
   const renderSection = () => {
     switch (selectedSection) {
+      case 'dashboard' : return <OverviewTab/>;
       case 'campaigns': return <CampaignsTab />;
       case 'users': return <UsersTab />;
       case 'donations': return <DonationTab/>;
@@ -26,12 +28,13 @@ const AdminDashboard = () => {
       case 'gallery': return <GalleryTab />;
       case 'team': return <TeamTab />;
       case 'faq': return <FaqTab />;
-      default: return <div>Select a section</div>;
+      default: return <OverviewTab role='admin'/>;
     }
   };
+  
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex bg-gray-100">
       <DashboardSidebar
       selected={selectedSection} 
       onSelect={setSelectedSection} 

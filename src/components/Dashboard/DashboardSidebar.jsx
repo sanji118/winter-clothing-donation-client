@@ -2,7 +2,9 @@ import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, Users, HandCoins, Newspaper, 
   HeartHandshake, MessageSquare, Megaphone, 
-  Image, Users2, HelpCircle 
+  Image, Users2, HelpCircle, 
+  Calendar,
+  User
 } from 'lucide-react';
 
 
@@ -38,7 +40,7 @@ export const DashboardSidebar = ({ role = 'admin', selected, onSelect }) => {
   const items = sidebarItems[role] || [];
 
   return (
-    <div className="w-64 bg-white shadow-md p-4">
+    <div className="w-64 bg-white shadow-md p-4 top-16">
       <div className="space-y-2">
         {items.map((item) => (
           <NavLink

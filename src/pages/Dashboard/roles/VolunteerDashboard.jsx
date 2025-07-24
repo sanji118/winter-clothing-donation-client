@@ -2,6 +2,7 @@ import { useState } from 'react';
 import VolunteerTasksTab from '../../../components/Dashboard/tabs/volunteer/VolunteerTasksTab';
 import VolunteerEventsTab from '../../../components/Dashboard/tabs/volunteer/VolunteerEventsTab';
 import { DashboardSidebar } from '../../../components/Dashboard/DashboardSidebar';
+import OverviewTab from '../../../components/Dashboard/tabs/OverviewTab';
 
 const VolunteerDashboard = () => {
   const [selectedSection, setSelectedSection] = useState('tasks');
@@ -10,7 +11,7 @@ const VolunteerDashboard = () => {
     switch (selectedSection) {
       case 'tasks': return <VolunteerTasksTab />;
       case 'events': return <VolunteerEventsTab />;
-      default: return <div>Volunteer Overview</div>;
+      default: return <OverviewTab role='volunteer'/>;
     }
   };
 

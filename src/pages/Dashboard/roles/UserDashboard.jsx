@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Profile from '../../../auth/Profile';
 import UserDonationsTab from '../../../components/Dashboard/tabs/user/UserDonationsTab';
 import { DashboardSidebar } from '../../../components/Dashboard/DashboardSidebar';
+import OverviewTab from '../../../components/Dashboard/tabs/OverviewTab';
 
 const UserDashboard = () => {
   const [selectedSection, setSelectedSection] = useState('profile');
@@ -10,7 +11,7 @@ const UserDashboard = () => {
     switch (selectedSection) {
       case 'profile': return <Profile />;
       case 'donations': return <UserDonationsTab />;
-      default: return <div>User Overview</div>;
+      default: return <OverviewTab role='user'/>;
     }
   };
 
