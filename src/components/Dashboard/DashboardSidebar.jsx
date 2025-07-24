@@ -40,7 +40,7 @@ export const DashboardSidebar = ({ role = 'admin', selected, onSelect }) => {
   const items = sidebarItems[role] || [];
 
   return (
-    <div className="w-64 bg-white shadow-md p-4 top-16">
+    <div className="w-64 bg-white shadow-md p-4 h-full overflow-y-hidden">
       <div className="space-y-2">
         {items.map((item) => (
           <NavLink

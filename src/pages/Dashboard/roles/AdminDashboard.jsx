@@ -34,12 +34,14 @@ const AdminDashboard = () => {
   
 
   return (
-    <div className="flex bg-gray-100">
-      <DashboardSidebar
-      selected={selectedSection} 
-      onSelect={setSelectedSection} 
-      role='admin'
-      />
+    <div className="flex h-screen bg-gray-100 overflow-hidden">
+      <div>
+        <DashboardSidebar
+          selected={selectedSection} 
+          onSelect={setSelectedSection} 
+          role='admin'
+        />
+      </div>
       <main className="flex-1 p-6 overflow-y-auto">
         {renderSection()}
       </main>

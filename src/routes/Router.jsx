@@ -19,7 +19,7 @@ import VolunteerPage from "../pages/VolunteerPage/VolunteerPage";
 import BlogPage from "../pages/BlogPage/BlogPage";
 import DonationDetails from "../components/Donations/DonationDetails/DonationDetails";
 import PaymentSuccessPage from "../components/Donations/PaymentSuccessPage";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import DashboardLayout from "../pages/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
     {
@@ -91,15 +91,16 @@ export const router = createBrowserRouter([
                 path: '/volunteer',
                 element: <PrivateRouter><VolunteerPage /></PrivateRouter> 
             },
-            {
-                path: '/dashboard',
-                element: <PrivateRouter><Dashboard /></PrivateRouter>
-            },
+            
             {
                 path: '/profile',
                 element: <PrivateRouter><Profile /></PrivateRouter>
             },
         ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRouter><DashboardLayout /></PrivateRouter>
     },
     {
         path: '/auth/',

@@ -5,6 +5,7 @@ import VolunteerDashboard from './roles/VolunteerDashboard';
 import UserDashboard from './roles/UserDashboard';
 import Unauthorized from '../../components/ui/Unauthorized';
 import useAuth from "../../services/authService";
+import Navbar from "../../components/Navbar/Navbar";
 
 
 const Dashboard = () => {
@@ -21,4 +22,14 @@ const Dashboard = () => {
   }
 }
 
-export default Dashboard;
+const DashboardLayout = () => {
+  return (
+    <div>
+      <Navbar/>
+      <div className="mt-16"><Dashboard/></div>
+      
+    </div>
+  )
+}
+export default DashboardLayout;
+
