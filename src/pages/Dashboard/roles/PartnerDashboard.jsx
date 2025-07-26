@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PartnerCampaignsTab from '../../../components/Dashboard/tabs/partner/PartnerCampaignsTab';
 import { DashboardSidebar } from '../../../components/Dashboard/DashboardSidebar';
-import CampaignsTab from '../../../components/Dashboard/tabs/admin/CampaignsTab';
+import CampaignsTab from '../../../components/Dashboard/tabs/admin/campaignTab/CampaignsTab';
 import DonationTab from '../../../components/Dashboard/tabs/admin/DonationTab';
 import OverviewTab from '../../../components/Dashboard/tabs/OverviewTab';
 

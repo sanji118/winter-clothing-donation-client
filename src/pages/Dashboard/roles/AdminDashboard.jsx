@@ -9,7 +9,7 @@ import GalleryTab from '../../../components/Dashboard/tabs/admin/GalleryTab';
 import TeamTab from '../../../components/Dashboard/tabs/admin/TeamTab';
 import FaqTab from '../../../components/Dashboard/tabs/admin/FaqTab';
 import { DashboardSidebar } from '../../../components/Dashboard/DashboardSidebar';
-import CampaignsTab from '../../../components/Dashboard/tabs/admin/CampaignsTab';
+import CampaignsTab from '../../../components/Dashboard/tabs/admin/campaignTab/CampaignsTab';
 import OverviewTab from '../../../components/Dashboard/tabs/OverviewTab';
 
 const AdminDashboard = () => {
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
           role='admin'
         />
       </div>
-      <main className="flex-1 p-6 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto">
         {renderSection()}
       </main>
     </div>
