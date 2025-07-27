@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DonationTab from '../../../components/Dashboard/tabs/admin/DonationTab';
 import UsersTab from '../../../components/Dashboard/tabs/admin/UsersTab';
 import BlogsTab from '../../../components/Dashboard/tabs/admin/BlogsTab';
@@ -12,38 +12,55 @@ import { DashboardSidebar } from '../../../components/Dashboard/DashboardSidebar
 import CampaignsTab from '../../../components/Dashboard/tabs/admin/campaignTab/CampaignsTab';
 import OverviewTab from '../../../components/Dashboard/tabs/OverviewTab';
 
-const AdminDashboard = () => {
-  const [selectedSection, setSelectedSection] = useState('dashboard');
+const sectionMap = {
+  dashboard: <OverviewTab />,
+  campaigns: <CampaignsTab />,
+  users: <UsersTab />,
+  donations: <DonationTab />,
+  blogs: <BlogsTab />,
+  volunteers: <VolunteersTab />,
+  testimonials: <TestimonialsTab />,
+  announcements: <AnnouncementsTab />,
+  gallery: <GalleryTab />,
+  team: <TeamTab />,
+  faq: <FaqTab />
+};
 
-  const renderSection = () => {
-    switch (selectedSection) {
-      case 'dashboard' : return <OverviewTab/>;
-      case 'campaigns': return <CampaignsTab />;
-      case 'users': return <UsersTab />;
-      case 'donations': return <DonationTab/>;
-      case 'blogs': return <BlogsTab />;
-      case 'volunteers': return <VolunteersTab />;
-      case 'testimonials': return <TestimonialsTab />;
-      case 'announcements': return <AnnouncementsTab />;
-      case 'gallery': return <GalleryTab />;
-      case 'team': return <TeamTab />;
-      case 'faq': return <FaqTab />;
-      default: return <OverviewTab/>;
-    }
+const AdminDashboard = () => {
+  const getSectionFromHash = () => {
+    const hash = window.location.hash.replace('#', '');
+    return sectionMap[hash] ? hash : 'dashboard';
   };
+
+  const [selectedSection, setSelectedSection] = useState(getSectionFromHash);
+
   
+  useEffect(() => {
+    const onHashChange = () => {
+      const section = getSectionFromHash();
+      setSelectedSection(section);
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  
+  const handleSelect = (section) => {
+    window.location.hash = section;
+    setSelectedSection(section);
+  };
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
       <div>
         <DashboardSidebar
-          selected={selectedSection} 
-          onSelect={setSelectedSection} 
-          role='admin'
+          selected={selectedSection}
+          onSelect={handleSelect}
+          role="admin"
         />
       </div>
       <main className="flex-1 overflow-y-auto">
-        {renderSection()}
+        {sectionMap[selectedSection]}
       </main>
     </div>
   );

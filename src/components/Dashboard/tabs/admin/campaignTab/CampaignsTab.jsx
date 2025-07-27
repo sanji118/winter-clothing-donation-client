@@ -9,11 +9,13 @@ import {
 } from '../../../../../services/campaignService';
 import { toast } from 'react-toastify';
 import CampaignFormModal from './CampaignFormModal';
+import Searchbar from '../../../../Searchbar';
 
 export default function CampaignsTab() {
   const queryClient = useQueryClient();
   const { data: campaigns = [], isLoading } = useQuery({ queryKey: ['campaigns'], queryFn: getCampaigns });
 
+  const [searchTerm, setSearchTerm] = useState('');
   const [rows, setRows] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mode, setMode] = useState('create');
@@ -76,6 +78,17 @@ export default function CampaignsTab() {
   };
 
   const handleDelete = (id) => deleteMutation.mutate(id);
+
+
+  const filteredRows = useMemo(() => {
+    if (!searchTerm.trim()) return rows;
+    return rows.filter(c =>
+      c.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.division.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.contactInfo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.organizer?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm, rows]);
 
   const columns = useMemo(() => [
     {
@@ -176,18 +189,26 @@ export default function CampaignsTab() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-6 bg-cyan-50 border-l-2 border-cyan-500">
-      <div className="flex items-center justify-between">
+      <div  className='w-full text-center'>
         <div>
-          <h2 className="text-2xl font-semibold text-cyan-800">Campaign Management</h2>
+          <h2 className="text-2xl font-semibold text-cyan-700">Campaign Management</h2>
           <p className="text-gray-600">Manage all donation campaigns</p>
         </div>
-        <Button className='bg-cyan-500 text-white' onClick={handleCreateClick} startContent={<Plus />}>Create Campaign</Button>
+        <div className='flex flex-col md:flex-row items-center gap-10 mt-5'>
+          <Searchbar
+            onSearch={(value) => setSearchTerm(value)}
+            placeholder="Search campaigns by title, organizer, division or contact info"
+            className='w-3/5'
+          />
+          <Button className='bg-cyan-500 text-white' onClick={handleCreateClick} startContent={<Plus />}>Create Campaign</Button>
+        </div>
+        
       </div>
 
       <div className="bg-white rounded-lg shadow border overflow-auto">
         <DataGrid
           columns={columns}
-          rows={rows}
+          rows={filteredRows}
           className="rdg-light"
           style={{
             minHeight: 600,
