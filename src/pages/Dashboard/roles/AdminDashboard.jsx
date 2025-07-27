@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import DonationTab from '../../../components/Dashboard/tabs/admin/DonationTab';
 import UsersTab from '../../../components/Dashboard/tabs/admin/UsersTab';
-import BlogsTab from '../../../components/Dashboard/tabs/admin/BlogsTab';
+import BlogsTab from '../../../components/Dashboard/tabs/admin/BlogTab/BlogsTab';
 import VolunteersTab from '../../../components/Dashboard/tabs/admin/VolunteersTab';
 import TestimonialsTab from '../../../components/Dashboard/tabs/admin/TestimonialsTab';
 import AnnouncementsTab from '../../../components/Dashboard/tabs/admin/AnnouncementsTab';
